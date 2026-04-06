@@ -128,27 +128,27 @@ Actionable task checklist. Check off items as they're completed. See `PLAN.md` f
 ## Phase 5: Polish & PWA
 
 ### Offline & PWA
-- [ ] Upgrade `sw.js`: caching strategy, offline fallback, background sync
-- [ ] `OfflineBanner` component + offline detection hook
+- [x] Upgrade `sw.js`: caching strategy, offline fallback, stale-while-revalidate
+- [x] `OfflineBanner` component + offline detection hook
 - [ ] Test PWA install on iOS and Android
 
 ### Error Handling & Loading
-- [ ] Error boundary (`error.tsx`) with Spanish messages
-- [ ] Custom 404 (`not-found.tsx`)
-- [ ] `LoadingSkeleton` components (patient list, dashboard, forms)
-- [ ] Add `loading.tsx` to all route groups
-- [ ] Toast notification system
+- [x] Error boundary (`error.tsx`) with Spanish messages
+- [x] Custom 404 (`not-found.tsx`)
+- [x] `LoadingSkeleton` components (patient list, dashboard, forms)
+- [x] Add `loading.tsx` to all route groups
+- [x] Toast notification system
 
 ### Compliance & Data
-- [ ] Consent flow page + `ConsentModal` (Ley 8968)
-- [ ] `consent_given_at` column + Server Actions
-- [ ] Gate post-auth routes on consent in middleware
-- [ ] Data export route (JSON/CSV for patient's own data)
-- [ ] Patient settings page (export, delete account)
-- [ ] Therapist settings page (profile, practice info)
+- [x] Consent flow page (`/consentimiento`) — Ley 8968
+- [x] `consent_given_at` column + migration + Server Action
+- [x] Gate post-auth routes on consent in middleware
+- [x] Data export route (JSON via `/api/export`)
+- [x] Patient settings page (export, delete account info)
+- [x] Therapist settings page (profile info)
 
 ### Visual Polish
-- [ ] Framer Motion: page transitions, card entrances, form progress animations
+- [x] Framer Motion: PageTransition, StaggerList, CardEntrance, FadeIn primitives
 - [ ] Responsive audit: 390px, 768px, 1024px
 - [ ] Verify no PII in Vercel logs
 
