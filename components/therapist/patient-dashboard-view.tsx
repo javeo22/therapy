@@ -5,7 +5,9 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MetricChart } from "@/components/shared/metric-chart";
 import { MetricDefinitionForm } from "./metric-definition-form";
-import type { PatientRecord, Session, Metric, FormTemplate } from "@/lib/types/database";
+import type { PatientRecord, Session, Metric, FormTemplate, Assignment } from "@/lib/types/database";
+import { AssignmentForm } from "./assignment-form";
+import { TherapistAssignmentList } from "./assignment-list";
 import {
   Plus,
   Calendar,
@@ -35,6 +37,7 @@ interface PatientDashboardViewProps {
   sessions: Session[];
   metricsWithValues: MetricWithValues[];
   formTemplates: FormTemplateWithCount[];
+  assignments: Assignment[];
 }
 
 export function PatientDashboardView({
@@ -42,8 +45,10 @@ export function PatientDashboardView({
   sessions,
   metricsWithValues,
   formTemplates,
+  assignments,
 }: PatientDashboardViewProps) {
   const [showMetricForm, setShowMetricForm] = useState(false);
+  const [showAssignmentForm, setShowAssignmentForm] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const lastSession = sessions[0];
@@ -217,8 +222,41 @@ export function PatientDashboardView({
 
       </div>{/* End left column */}
 
-      {/* Right column: Sessions & Forms */}
+      {/* Right column: Assignments, Sessions & Forms */}
       <div className="flex flex-col gap-4">
+
+      {/* Tareas / Assignments */}
+      <Card variant="elevated">
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-sm font-semibold text-on-surface flex items-center gap-1.5">
+            <ClipboardList size={14} className="text-on-surface-variant" />
+            Tareas
+          </h3>
+          <button
+            onClick={() => setShowAssignmentForm(!showAssignmentForm)}
+            className="text-xs text-tertiary font-medium flex items-center gap-0.5"
+          >
+            <Plus size={12} /> Asignar
+          </button>
+        </div>
+
+        {showAssignmentForm && (
+          <div className="mb-4 pb-4" style={{ borderBottom: "1px solid var(--color-surface-container-high)" }}>
+            <AssignmentForm
+              patientRecordId={patient.id}
+              onClose={() => setShowAssignmentForm(false)}
+            />
+          </div>
+        )}
+
+        {assignments.length === 0 && !showAssignmentForm ? (
+          <p className="text-xs text-on-surface-variant text-center py-4">
+            Asigná tareas para que tu paciente trabaje entre sesiones.
+          </p>
+        ) : (
+          <TherapistAssignmentList assignments={assignments} />
+        )}
+      </Card>
 
       {/* Autorregistros */}
       <Card variant="elevated">

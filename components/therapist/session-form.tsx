@@ -5,9 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { MetricRecorder } from "@/components/shared/metric-recorder";
+import { MetricDefinitionForm } from "./metric-definition-form";
 import { createSession } from "@/lib/actions/sessions";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/toast";
+import { Plus } from "lucide-react";
 import type { Metric } from "@/lib/types/database";
 
 interface SessionFormProps {
@@ -28,6 +30,7 @@ export function SessionForm({
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [metricValues, setMetricValues] = useState<Record<string, number>>({});
+  const [showAddMetric, setShowAddMetric] = useState(false);
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -90,12 +93,31 @@ export function SessionForm({
           </div>
         </Card>
 
-        {/* Metrics — takes 1/3 on desktop */}
-        {metrics.length > 0 && (
-          <Card variant="elevated" className="lg:col-span-1">
-            <h3 className="font-semibold text-on-surface mb-4">
+        {/* Metrics — takes 1/3 on desktop, always visible */}
+        <Card variant="elevated" className="lg:col-span-1">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold text-on-surface">
               Métricas de seguimiento
             </h3>
+            <button
+              type="button"
+              onClick={() => setShowAddMetric(!showAddMetric)}
+              className="text-xs text-tertiary font-medium flex items-center gap-0.5"
+            >
+              <Plus size={12} /> Agregar
+            </button>
+          </div>
+
+          {showAddMetric && (
+            <div className="mb-4 pb-4" style={{ borderBottom: "1px solid var(--color-surface-container-high)" }}>
+              <MetricDefinitionForm
+                patientRecordId={patientRecordId}
+                onClose={() => setShowAddMetric(false)}
+              />
+            </div>
+          )}
+
+          {metrics.length > 0 ? (
             <div className="flex flex-col gap-5">
               {metrics.map((metric) => (
                 <MetricRecorder
@@ -109,8 +131,12 @@ export function SessionForm({
                 />
               ))}
             </div>
-          </Card>
-        )}
+          ) : !showAddMetric ? (
+            <p className="text-xs text-on-surface-variant text-center py-4">
+              Agregá métricas para registrar valores en esta sesión.
+            </p>
+          ) : null}
+        </Card>
       </div>
 
       {error && (

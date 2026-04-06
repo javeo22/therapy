@@ -34,9 +34,21 @@ export default async function FormCompletionPage({
         Registros
       </Link>
 
-      <h2 className="font-serif text-2xl font-bold text-on-surface mb-4">
+      <h2 className="font-serif text-2xl font-bold text-on-surface mb-1">
         {template.title}
       </h2>
+      {template.description && (
+        <p className="text-sm text-on-surface-variant mb-2">
+          {template.description}
+        </p>
+      )}
+      {template.instructions && (
+        <div className="bg-surface-container rounded-xl px-4 py-3 mb-4">
+          <p className="text-xs text-on-surface-variant leading-relaxed">
+            {template.instructions}
+          </p>
+        </div>
+      )}
 
       <FormCompletion
         formTemplateId={id}

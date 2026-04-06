@@ -16,6 +16,7 @@ export type Database = {
           full_name: string;
           created_at: string;
           consent_given_at: string | null;
+          avatar_url: string | null;
         };
         Insert: {
           id: string;
@@ -23,6 +24,7 @@ export type Database = {
           full_name: string;
           created_at?: string;
           consent_given_at?: string | null;
+          avatar_url?: string | null;
         };
         Update: {
           id?: string;
@@ -30,6 +32,7 @@ export type Database = {
           full_name?: string;
           created_at?: string;
           consent_given_at?: string | null;
+          avatar_url?: string | null;
         };
       };
       patient_records: {
@@ -142,6 +145,9 @@ export type Database = {
           therapist_id: string;
           patient_record_id: string;
           title: string;
+          description: string | null;
+          frequency: "once" | "daily" | "weekly" | "biweekly" | "session";
+          instructions: string | null;
           fields: Json;
           is_active: boolean;
           created_at: string;
@@ -151,6 +157,9 @@ export type Database = {
           therapist_id: string;
           patient_record_id: string;
           title: string;
+          description?: string | null;
+          frequency?: "once" | "daily" | "weekly" | "biweekly" | "session";
+          instructions?: string | null;
           fields?: Json;
           is_active?: boolean;
           created_at?: string;
@@ -160,6 +169,9 @@ export type Database = {
           therapist_id?: string;
           patient_record_id?: string;
           title?: string;
+          description?: string | null;
+          frequency?: "once" | "daily" | "weekly" | "biweekly" | "session";
+          instructions?: string | null;
           fields?: Json;
           is_active?: boolean;
           created_at?: string;
@@ -188,6 +200,41 @@ export type Database = {
           submitted_at?: string;
         };
       };
+      assignments: {
+        Row: {
+          id: string;
+          patient_record_id: string;
+          therapist_id: string;
+          title: string;
+          description: string | null;
+          due_date: string | null;
+          is_completed: boolean;
+          completed_at: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          patient_record_id: string;
+          therapist_id: string;
+          title: string;
+          description?: string | null;
+          due_date?: string | null;
+          is_completed?: boolean;
+          completed_at?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          patient_record_id?: string;
+          therapist_id?: string;
+          title?: string;
+          description?: string | null;
+          due_date?: string | null;
+          is_completed?: boolean;
+          completed_at?: string | null;
+          created_at?: string;
+        };
+      };
     };
   };
 };
@@ -200,3 +247,4 @@ export type Metric = Database["public"]["Tables"]["metrics"]["Row"];
 export type MetricValue = Database["public"]["Tables"]["metric_values"]["Row"];
 export type FormTemplate = Database["public"]["Tables"]["form_templates"]["Row"];
 export type FormSubmission = Database["public"]["Tables"]["form_submissions"]["Row"];
+export type Assignment = Database["public"]["Tables"]["assignments"]["Row"];

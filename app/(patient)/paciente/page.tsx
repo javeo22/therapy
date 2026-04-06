@@ -1,6 +1,7 @@
 import { PatientGreeting } from "@/components/patient/patient-greeting";
 import { MetricSummary } from "@/components/patient/metric-summary";
 import { PendingForms } from "@/components/patient/pending-forms";
+import { PatientAssignmentList } from "@/components/patient/assignment-list";
 import { EngagementIndicator } from "@/components/patient/engagement-indicator";
 import { Card } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/server";
@@ -86,12 +87,63 @@ export default async function PatientDashboardPage() {
     .select("*", { count: "exact", head: true })
     .eq("patient_id", user!.id);
 
-  // Active forms (can be filled repeatedly)
+  // Active forms with frequency-aware status
   const { data: activeForms } = await supabase
     .from("form_templates")
     .select("*")
     .eq("patient_record_id", record.id)
     .eq("is_active", true);
+
+  // Get most recent submission per template for due status
+  const { data: allSubmissions } = await supabase
+    .from("form_submissions")
+    .select("form_template_id, submitted_at")
+    .eq("patient_id", user!.id)
+    .order("submitted_at", { ascending: false });
+
+  const lastSubmissionMap = new Map<string, string>();
+  (allSubmissions || []).forEach((s) => {
+    if (!lastSubmissionMap.has(s.form_template_id)) {
+      lastSubmissionMap.set(s.form_template_id, s.submitted_at);
+    }
+  });
+
+  const { data: lastSessionForFreq } = await supabase
+    .from("sessions")
+    .select("session_date")
+    .eq("patient_record_id", record.id)
+    .order("session_date", { ascending: false })
+    .limit(1)
+    .single();
+
+  const now = new Date();
+  const formsWithStatus = (activeForms || []).map((template) => {
+    const freq = (template as any).frequency || "once";
+    const lastSub = lastSubmissionMap.get(template.id);
+    let isDue = true;
+
+    if (lastSub) {
+      const lastDate = new Date(lastSub);
+      const diffDays = (now.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24);
+      switch (freq) {
+        case "once": isDue = false; break;
+        case "daily": isDue = lastDate.toDateString() !== now.toDateString(); break;
+        case "weekly": isDue = diffDays >= 7; break;
+        case "biweekly": isDue = diffDays >= 14; break;
+        case "session": isDue = lastSessionForFreq ? new Date(lastSub) < new Date(lastSessionForFreq.session_date + "T00:00:00") : true; break;
+      }
+    }
+    return { ...template, lastSubmittedAt: lastSub || null, isDue };
+  });
+
+  formsWithStatus.sort((a, b) => (a.isDue === b.isDue ? 0 : a.isDue ? -1 : 1));
+
+  // Fetch assignments
+  const { data: myAssignments } = await supabase
+    .from("assignments")
+    .select("*")
+    .eq("patient_record_id", record.id)
+    .order("created_at", { ascending: false });
 
   return (
     <div className="py-6">
@@ -120,6 +172,15 @@ export default async function PatientDashboardPage() {
         </Card>
       </Link>
 
+      {(myAssignments?.length ?? 0) > 0 && (
+        <>
+          <div className="mt-6 mb-3">
+            <h3 className="text-sm font-semibold text-on-surface">Tareas</h3>
+          </div>
+          <PatientAssignmentList assignments={myAssignments || []} />
+        </>
+      )}
+
       <div className="mt-6 mb-3">
         <h3 className="text-sm font-semibold text-on-surface">Tu progreso</h3>
       </div>
@@ -130,7 +191,7 @@ export default async function PatientDashboardPage() {
           Autorregistros
         </h3>
       </div>
-      <PendingForms forms={activeForms || []} />
+      <PendingForms forms={formsWithStatus} />
     </div>
   );
 }

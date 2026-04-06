@@ -128,7 +128,7 @@ export async function getMySessionHistory() {
   };
 }
 
-export async function getMyPendingForms() {
+export async function getMyActiveForms() {
   const supabase = await createClient();
 
   const {
@@ -145,7 +145,7 @@ export async function getMyPendingForms() {
 
   if (!record) return { data: [] };
 
-  // Get active form templates for this patient
+  // Get active form templates
   const { data: templates } = await supabase
     .from("form_templates")
     .select("*")
@@ -154,18 +154,73 @@ export async function getMyPendingForms() {
 
   if (!templates?.length) return { data: [] };
 
-  // Get submissions by this patient
+  // Get most recent submission per template
   const { data: submissions } = await supabase
     .from("form_submissions")
-    .select("form_template_id")
-    .eq("patient_id", user.id);
+    .select("form_template_id, submitted_at")
+    .eq("patient_id", user.id)
+    .order("submitted_at", { ascending: false });
 
-  const submittedIds = new Set(
-    (submissions || []).map((s) => s.form_template_id)
-  );
+  // Build map: template_id → most recent submission date
+  const lastSubmission = new Map<string, string>();
+  (submissions || []).forEach((s) => {
+    if (!lastSubmission.has(s.form_template_id)) {
+      lastSubmission.set(s.form_template_id, s.submitted_at);
+    }
+  });
 
-  // Filter to templates not yet submitted
-  const pending = templates.filter((t) => !submittedIds.has(t.id));
+  // Get last session date for "session" frequency
+  const { data: lastSession } = await supabase
+    .from("sessions")
+    .select("session_date")
+    .eq("patient_record_id", record.id)
+    .order("session_date", { ascending: false })
+    .limit(1)
+    .single();
 
-  return { data: pending };
+  const now = new Date();
+
+  // Determine status per template
+  const formsWithStatus = templates.map((template) => {
+    const freq = (template as any).frequency || "once";
+    const lastSub = lastSubmission.get(template.id);
+    let isDue = true;
+
+    if (lastSub) {
+      const lastDate = new Date(lastSub);
+      const diffMs = now.getTime() - lastDate.getTime();
+      const diffDays = diffMs / (1000 * 60 * 60 * 24);
+
+      switch (freq) {
+        case "once":
+          isDue = false; // already submitted
+          break;
+        case "daily":
+          isDue = lastDate.toDateString() !== now.toDateString();
+          break;
+        case "weekly":
+          isDue = diffDays >= 7;
+          break;
+        case "biweekly":
+          isDue = diffDays >= 14;
+          break;
+        case "session":
+          isDue = lastSession
+            ? new Date(lastSub) < new Date(lastSession.session_date + "T00:00:00")
+            : true;
+          break;
+      }
+    }
+
+    return {
+      ...template,
+      lastSubmittedAt: lastSub || null,
+      isDue,
+    };
+  });
+
+  // Sort: due forms first
+  formsWithStatus.sort((a, b) => (a.isDue === b.isDue ? 0 : a.isDue ? -1 : 1));
+
+  return { data: formsWithStatus };
 }

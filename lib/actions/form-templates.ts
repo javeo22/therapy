@@ -7,7 +7,12 @@ import type { FormField } from "@/lib/types/forms";
 export async function createTemplate(
   patientRecordId: string,
   title: string,
-  fields: FormField[]
+  fields: FormField[],
+  options?: {
+    description?: string;
+    frequency?: "once" | "daily" | "weekly" | "biweekly" | "session";
+    instructions?: string;
+  }
 ) {
   const supabase = await createClient();
 
@@ -25,6 +30,9 @@ export async function createTemplate(
       therapist_id: user.id,
       patient_record_id: patientRecordId,
       title: title.trim(),
+      description: options?.description?.trim() || null,
+      frequency: options?.frequency || "once",
+      instructions: options?.instructions?.trim() || null,
       fields: fields as unknown as Record<string, unknown>[],
     })
     .select()

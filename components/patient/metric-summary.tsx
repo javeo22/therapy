@@ -31,6 +31,18 @@ const trendIcon = {
   stable: <Minus size={14} className="text-on-surface-variant" />,
 };
 
+const trendLabel = {
+  up: "Mejorando",
+  down: "Bajando",
+  stable: "Estable",
+};
+
+const trendLabelClass = {
+  up: "text-secondary",
+  down: "text-error",
+  stable: "text-on-surface-variant",
+};
+
 export function MetricSummary({ metrics }: MetricSummaryProps) {
   if (metrics.length === 0) {
     return (
@@ -70,6 +82,11 @@ export function MetricSummary({ metrics }: MetricSummaryProps) {
               {latestValue !== null && (
                 <div className="flex items-center gap-1.5">
                   {trendIcon[trend]}
+                  {metric.values.length >= 3 && (
+                    <span className={`text-[10px] font-medium ${trendLabelClass[trend]}`}>
+                      {trendLabel[trend]}
+                    </span>
+                  )}
                   <span className="text-xl font-bold text-primary tabular-nums">
                     {latestValue}
                   </span>

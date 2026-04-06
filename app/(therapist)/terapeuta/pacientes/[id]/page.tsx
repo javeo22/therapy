@@ -73,6 +73,13 @@ export default async function PatientDetailPage({
     })
   );
 
+  // Fetch assignments
+  const { data: assignments } = await supabase
+    .from("assignments")
+    .select("*")
+    .eq("patient_record_id", id)
+    .order("created_at", { ascending: false });
+
   return (
     <div className="py-6">
       <Link
@@ -96,6 +103,7 @@ export default async function PatientDetailPage({
         sessions={sessions || []}
         metricsWithValues={metricsWithValues}
         formTemplates={formTemplates}
+        assignments={assignments || []}
       />
     </div>
   );

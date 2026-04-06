@@ -4,6 +4,7 @@ import { signOut } from "@/lib/actions/auth";
 import { createClient } from "@/lib/supabase/server";
 import { User, LogOut } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
+import { AvatarUpload } from "@/components/therapist/avatar-upload";
 
 export default async function AjustesPage() {
   const supabase = await createClient();
@@ -26,7 +27,10 @@ export default async function AjustesPage() {
 
       <Card variant="elevated" className="mb-4">
         <div className="flex items-center gap-3 mb-4">
-          <Avatar name={profile?.full_name || ""} size="lg" />
+          <AvatarUpload
+            name={profile?.full_name || ""}
+            currentUrl={profile?.avatar_url}
+          />
           <div>
             <p className="font-semibold text-on-surface">
               {profile?.full_name}

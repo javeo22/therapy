@@ -13,11 +13,13 @@ import {
 } from "@/lib/types/forms";
 import { formTemplateSchema } from "@/lib/utils/form-validation";
 import { createTemplate } from "@/lib/actions/form-templates";
+import { FORM_PRESETS } from "@/lib/data/form-presets";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/toast";
 import {
   Plus,
   Trash2,
+  BookOpen,
   GripVertical,
   ChevronUp,
   ChevronDown,
@@ -33,12 +35,29 @@ export function FormBuilder({ patientRecordId }: FormBuilderProps) {
   const router = useRouter();
   const { toast } = useToast();
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [frequency, setFrequency] = useState<"once" | "daily" | "weekly" | "biweekly" | "session">("once");
+  const [instructions, setInstructions] = useState("");
   const [fields, setFields] = useState<FormField[]>([]);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const [showFieldMenu, setShowFieldMenu] = useState(false);
   const [editingFieldId, setEditingFieldId] = useState<string | null>(null);
+  const [showPresets, setShowPresets] = useState(false);
+
+  function applyPreset(presetId: string) {
+    const preset = FORM_PRESETS.find((p) => p.id === presetId);
+    if (!preset) return;
+    // Regenerate IDs so each use is unique
+    const newFields = preset.fields.map((f) => ({ ...f, id: crypto.randomUUID() }));
+    setTitle(preset.name);
+    setDescription(preset.description);
+    setFrequency(preset.frequency);
+    setInstructions(preset.instructions);
+    setFields(newFields);
+    setShowPresets(false);
+  }
 
   function addField(type: FormFieldType) {
     const field = createEmptyField(type);
@@ -126,7 +145,11 @@ export function FormBuilder({ patientRecordId }: FormBuilderProps) {
 
     setLoading(true);
 
-    const res = await createTemplate(patientRecordId, title, fields);
+    const res = await createTemplate(patientRecordId, title, fields, {
+      description,
+      frequency,
+      instructions,
+    });
 
     setLoading(false);
 
@@ -169,15 +192,87 @@ export function FormBuilder({ patientRecordId }: FormBuilderProps) {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
     {/* Left: builder */}
     <div className="flex flex-col gap-4">
-      {/* Title */}
+      {/* Preset selector */}
+      {fields.length === 0 && !showPresets && (
+        <button
+          onClick={() => setShowPresets(true)}
+          className="flex items-center justify-center gap-2 py-3 rounded-3xl bg-tertiary/5 text-sm text-tertiary font-medium hover:bg-tertiary/10 transition-colors"
+        >
+          <BookOpen size={16} /> Usar plantilla basada en evidencia
+        </button>
+      )}
+
+      {showPresets && (
+        <Card variant="elevated">
+          <h3 className="text-sm font-semibold text-on-surface mb-3">
+            Plantillas basadas en evidencia
+          </h3>
+          <div className="flex flex-col gap-1.5">
+            {FORM_PRESETS.map((preset) => (
+              <button
+                key={preset.id}
+                onClick={() => applyPreset(preset.id)}
+                className="text-left px-3 py-2.5 rounded-xl hover:bg-surface-container-high transition-colors"
+              >
+                <p className="text-sm font-medium text-on-surface">{preset.name}</p>
+                <p className="text-xs text-on-surface-variant">{preset.model} · {preset.fields.length} campos</p>
+              </button>
+            ))}
+          </div>
+          <button
+            onClick={() => setShowPresets(false)}
+            className="text-xs text-on-surface-variant mt-2"
+          >
+            Crear desde cero
+          </button>
+        </Card>
+      )}
+
+      {/* Title + scheduling */}
       <Card variant="elevated">
-        <Input
-          label="Título del formulario"
-          placeholder="Ej: Registro diario de emociones"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          error={errors.title}
-        />
+        <div className="flex flex-col gap-3">
+          <Input
+            label="Título del formulario"
+            placeholder="Ej: Registro diario de emociones"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            error={errors.title}
+          />
+          <Input
+            label="Descripción para el paciente (opcional)"
+            placeholder="Ej: Registro para identificar patrones de pensamiento"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-medium text-on-surface-variant">
+              Frecuencia
+            </label>
+            <select
+              value={frequency}
+              onChange={(e) => setFrequency(e.target.value as typeof frequency)}
+              className="w-full px-4 py-3 rounded-xl bg-surface-container-highest text-on-surface border-b-2 border-transparent focus:bg-white focus:border-primary/40 focus:outline-none transition-all duration-300 ease-out"
+            >
+              <option value="once">Una vez</option>
+              <option value="daily">Diario</option>
+              <option value="weekly">Semanal</option>
+              <option value="biweekly">Quincenal</option>
+              <option value="session">Antes de cada sesión</option>
+            </select>
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-medium text-on-surface-variant">
+              Instrucciones para el paciente (opcional)
+            </label>
+            <textarea
+              value={instructions}
+              onChange={(e) => setInstructions(e.target.value)}
+              rows={2}
+              placeholder="Ej: Completá este registro cada noche antes de dormir..."
+              className="w-full px-4 py-3 rounded-xl bg-surface-container-highest text-on-surface placeholder:text-on-surface-variant/50 border-b-2 border-transparent focus:bg-white focus:border-primary/40 focus:outline-none transition-all duration-300 ease-out resize-none"
+            />
+          </div>
+        </div>
       </Card>
 
       {/* Fields */}

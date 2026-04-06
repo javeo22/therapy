@@ -1,12 +1,11 @@
 "use client";
 
 import { BottomNav, type NavTab } from "@/components/ui/bottom-nav";
-import { Home, ClipboardList, TrendingUp, UserCircle } from "lucide-react";
+import { Home, ClipboardList, UserCircle } from "lucide-react";
 
 const patientTabs: NavTab[] = [
   { href: "/paciente", label: "Inicio", icon: Home },
   { href: "/paciente/registros", label: "Registros", icon: ClipboardList },
-  { href: "/paciente/progreso", label: "Progreso", icon: TrendingUp },
   { href: "/paciente/perfil", label: "Perfil", icon: UserCircle },
 ];
 
