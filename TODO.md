@@ -25,30 +25,30 @@ Actionable task checklist. Check off items as they're completed. See `PLAN.md` f
 ## Phase 1: Foundation
 
 ### Database
-- [ ] Write `supabase/migrations/001_initial_schema.sql` (all tables + RLS + triggers)
-- [ ] Apply migration to Supabase
-- [ ] Generate TypeScript types (`supabase gen types typescript`)
-- [ ] Write RLS test scripts (`supabase/tests/rls_test.sql`)
+- [x] Write `supabase/migrations/001_initial_schema.sql` (all tables + RLS + triggers)
+- [x] Apply migration to Supabase
+- [x] Generate TypeScript types (`supabase gen types typescript`)
+- [x] Write RLS test scripts (`supabase/tests/rls_test.sql`)
 
 ### Auth
-- [ ] Build `LoginForm` (email/password + magic link toggle)
-- [ ] Build `RegisterForm` with `RoleSelector` ("Soy terapeuta" / "Soy paciente")
-- [ ] Build auth callback route (`/auth/callback/route.ts`)
-- [ ] Build patient invite flow (therapist generates link → patient registers → auto-links)
-- [ ] Update middleware: session refresh + role-based route protection
+- [x] Build `LoginForm` (email/password + magic link toggle)
+- [x] Build `RegisterForm` with `RoleSelector` ("Soy terapeuta" / "Soy paciente")
+- [x] Build auth callback route (`/auth/callback/route.ts`)
+- [x] Build patient invite flow (therapist generates link → patient registers → auto-links)
+- [x] Update middleware: session refresh + role-based route protection
 
 ### UI Primitives
-- [ ] `Button` (primary gradient, secondary, tertiary/ghost)
-- [ ] `Input` (minimalist, bottom ghost border, focus state)
-- [ ] `Card` (xl radius, no divider lines, tonal layering)
-- [ ] `BottomNav` (glassmorphism, role-based tabs)
-- [ ] `Avatar` (image + initials fallback)
+- [x] `Button` (primary gradient, secondary, tertiary/ghost)
+- [x] `Input` (minimalist, bottom ghost border, focus state)
+- [x] `Card` (xl radius, no divider lines, tonal layering)
+- [x] `BottomNav` (glassmorphism, role-based tabs)
+- [x] `Avatar` (image + initials fallback)
 
 ### Layouts
-- [ ] Therapist shell (header + BottomNav: Pacientes / Sesiones / Ajustes)
-- [ ] Patient shell (header + BottomNav: Inicio / Registros / Progreso / Perfil)
-- [ ] Auth layout (centered card)
-- [ ] Placeholder dashboard pages for both roles
+- [x] Therapist shell (header + BottomNav: Pacientes / Sesiones / Ajustes)
+- [x] Patient shell (header + BottomNav: Inicio / Registros / Progreso / Perfil)
+- [x] Auth layout (centered card)
+- [x] Placeholder dashboard pages for both roles
 
 ## Phase 2: Therapist Core
 
