@@ -27,12 +27,12 @@ export async function signUp(formData: FormData) {
     return { error: error.message };
   }
 
-  // If registering via invite, link patient to therapist
+  // If registering via invite, link patient to therapist via security definer function
   if (inviteToken && data.user && role === "patient") {
-    const { error: linkError } = await supabase
-      .from("patient_records")
-      .update({ patient_id: data.user.id, invite_token: null })
-      .eq("invite_token", inviteToken);
+    const { error: linkError } = await supabase.rpc("claim_invite_token", {
+      p_invite_token: inviteToken,
+      p_patient_id: data.user.id,
+    });
 
     if (linkError) {
       return { error: "No se pudo vincular con tu terapeuta. Contactá a tu terapeuta." };

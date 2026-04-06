@@ -4,6 +4,8 @@ import { PendingForms } from "@/components/patient/pending-forms";
 import { EngagementIndicator } from "@/components/patient/engagement-indicator";
 import { Card } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/server";
+import Link from "next/link";
+import { Calendar, ChevronRight } from "lucide-react";
 
 export default async function PatientDashboardPage() {
   const supabase = await createClient();
@@ -102,6 +104,18 @@ export default async function PatientDashboardPage() {
         totalSessions={sessionCount || 0}
         totalFormsCompleted={formsCount || 0}
       />
+
+      <Link href="/paciente/sesiones">
+        <Card className="flex items-center gap-3 py-3 px-4 mt-4 active:scale-[0.98] transition-transform duration-150">
+          <div className="w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center">
+            <Calendar size={16} className="text-secondary" />
+          </div>
+          <span className="text-sm font-medium text-on-surface flex-1">
+            Ver historial de sesiones
+          </span>
+          <ChevronRight size={16} className="text-on-surface-variant/40" />
+        </Card>
+      </Link>
 
       <div className="mt-6 mb-3">
         <h3 className="text-sm font-semibold text-on-surface">Tu progreso</h3>
