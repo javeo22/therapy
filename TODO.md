@@ -91,36 +91,39 @@ Actionable task checklist. Check off items as they're completed. See `PLAN.md` f
 ## Phase 4: Autorregistros
 
 ### Types & Validation
-- [ ] TypeScript types for form fields (`lib/types/forms.ts`)
-- [ ] Zod schemas for template validation + submission validation
+- [x] TypeScript types for form fields (`lib/types/forms.ts`)
+- [x] Zod schemas for template validation + submission validation
 
 ### Field Components
-- [ ] `ScaleField` (0–10 horizontal tap selector)
-- [ ] `EmotionPicker` (visual emotion grid with labels)
-- [ ] `TextField` (free text / multiline)
-- [ ] `TimeBlockGrid` (time-of-day block selector)
+- [x] `ScaleField` (0–10 horizontal tap selector)
+- [x] `EmotionPicker` (visual emotion grid with labels)
+- [x] `TextField` (free text / multiline)
+- [x] `TimeBlockGrid` (time-of-day block selector)
+- [x] `YesNoField` (boolean toggle)
+- [x] `ChecklistField` (multi-select)
+- [x] `SelectField` (single-select)
 
 ### Therapist: Form Builder
-- [ ] `FormBuilder` (add/remove/reorder fields, configure each)
-- [ ] `FieldConfigurator` (type-specific options per field)
-- [ ] `FormPreview` (renders via FormRenderer in read-only mode)
-- [ ] Server Actions: `createTemplate`, `getTemplates`, `toggleActive`
-- [ ] Form template list page
-- [ ] Form builder page (new template)
+- [x] `FormBuilder` (add/remove/reorder fields, configure each)
+- [x] `FieldConfigurator` (type-specific options per field — integrated into FormBuilder)
+- [x] `FormPreview` (renders via FormRenderer in read-only mode — integrated into FormBuilder)
+- [x] Server Actions: `createTemplate`, `getTemplates`, `toggleActive`
+- [x] Form template list (integrated into patient dashboard)
+- [x] Form builder page (new template)
 
 ### Patient: Form Completion
-- [ ] `FormRenderer` (maps field array to components, manages state)
-- [ ] `FormProgress` ("Pregunta 2 de 4")
-- [ ] `FormConfirmation` (success screen)
-- [ ] Server Actions: `submitForm`, `getMySubmissions`
-- [ ] Form completion page (`/paciente/formularios/[id]`)
-- [ ] Form list page (pending + completed)
+- [x] `FormRenderer` (maps field array to components, manages state)
+- [x] `FormProgress` (progress bar with answered/total count)
+- [x] `FormConfirmation` (success screen — integrated into FormCompletion)
+- [x] Server Actions: `submitForm`, `getMySubmissions`
+- [x] Form completion page (`/paciente/registros/[id]`)
+- [x] Form list page (pending + completed)
 
 ### Therapist: Submission Viewing
-- [ ] `SubmissionList` (table/list per template)
-- [ ] `SubmissionDetail` (view individual submission)
-- [ ] Submission viewing pages
-- [ ] Wire `PendingForms` on patient dashboard to real data
+- [x] `SubmissionList` (list per template)
+- [x] `SubmissionDetail` (view individual submission)
+- [x] Submission viewing pages
+- [x] Wire `PendingForms` on patient dashboard to real data
 
 ## Phase 5: Polish & PWA
 
