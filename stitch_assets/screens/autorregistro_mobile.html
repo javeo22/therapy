@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#845c32",
+                    "error-dim": "#70030f",
+                    "on-error": "#ffffff",
+                    "primary-dim": "#8c432b",
+                    "tertiary-dim": "#765028",
+                    "secondary": "#596a40",
+                    "secondary-container": "#e4f8c3",
+                    "background": "#fffcf7",
+                    "surface-variant": "#eae9dd",
+                    "on-primary-fixed": "#4d1402",
+                    "primary": "#9b4f36",
+                    "primary-container": "#ffad94",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#64655c",
+                    "on-primary-fixed-variant": "#74311a",
+                    "secondary-fixed": "#e4f8c3",
+                    "on-secondary-fixed": "#3d4d26",
+                    "surface-bright": "#fffcf7",
+                    "surface-dim": "#e4e3d6",
+                    "surface-container-low": "#fcf9f3",
+                    "surface-container-high": "#f0eee4",
+                    "on-secondary-container": "#4f6036",
+                    "on-tertiary-fixed": "#331b00",
+                    "error": "#b33938",
+                    "inverse-primary": "#f7987a",
+                    "outline-variant": "#babaaf",
+                    "secondary-fixed-dim": "#d6eab5",
+                    "inverse-surface": "#0e0e0c",
+                    "surface-container": "#f6f4ec",
+                    "tertiary-fixed-dim": "#d3a272",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#9b4f36",
+                    "on-tertiary-container": "#502f09",
+                    "on-background": "#373831",
+                    "outline": "#818178",
+                    "on-error-container": "#65000b",
+                    "on-surface": "#373831",
+                    "secondary-dim": "#4d5e35",
+                    "on-primary-container": "#692813",
+                    "primary-fixed": "#ffad94",
+                    "on-secondary-fixed-variant": "#596a40",
+                    "tertiary-fixed": "#e1af7e",
+                    "tertiary-container": "#e1af7e",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#fa9b7d",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#f56965",
+                    "on-tertiary-fixed-variant": "#5a3811",
+                    "inverse-on-surface": "#9e9d98",
+                    "surface-container-highest": "#eae9dd",
+                    "surface": "#fffcf7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .emotion-card:active {
+            transform: scale(0.95);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body min-h-screen pb-24">
+<!-- Top Navigation (Task Focused - No Global Nav per Hierarchy Rules) -->
+<header class="fixed top-0 w-full z-50 bg-[#fffcf7] dark:bg-stone-950 backdrop-blur-xl bg-opacity-80">
+<div class="flex justify-between items-center px-6 h-16 w-full">
+<button class="text-on-surface/60 hover:bg-[#f6f4ec] transition-colors duration-300 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<h1 class="font-serif font-bold text-xl text-[#373831] dark:text-[#fcf9f3]">Diario de bienestar</h1>
+<div class="w-10"></div> <!-- Spacer for balance -->
+</div>
+</header>
+<main class="pt-24 px-6 max-w-lg mx-auto">
+<!-- Progress Indicator -->
+<div class="mb-8">
+<div class="flex justify-between items-end mb-3">
+<span class="font-label text-[10px] uppercase tracking-widest font-bold text-tertiary">Progreso</span>
+<span class="font-label text-[10px] uppercase tracking-widest font-bold text-on-surface/40">Pregunta 2 de 4</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-1/2 rounded-full"></div>
+</div>
+</div>
+<div class="space-y-12">
+<!-- Question 1: Free Text (Previous State Context) -->
+<section class="opacity-40 select-none">
+<label class="block font-headline text-xl mb-4 text-on-surface">¿Qué pasó hoy?</label>
+<div class="p-4 bg-surface-container rounded-xl min-h-[80px] text-on-surface/60 italic">
+                    Hoy me sentí un poco más tranquilo después de caminar...
+                </div>
+</section>
+<!-- Question 2: Emotion Picker (Active State) -->
+<section>
+<h2 class="font-headline text-2xl mb-2 text-on-surface">¿Cómo te sientes ahora?</h2>
+<p class="text-on-surface-variant text-sm mb-6">Elige la emoción que mejor describa tu estado actual.</p>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+<!-- Happiness -->
+<button class="emotion-card flex flex-col items-center justify-center p-6 bg-secondary-container rounded-2xl transition-all duration-300 border-2 border-secondary/20 shadow-sm">
+<span class="material-symbols-outlined text-4xl mb-3 text-on-secondary-container" data-icon="sentiment_satisfied">sentiment_satisfied</span>
+<span class="font-label text-xs font-bold uppercase tracking-wider text-on-secondary-container">Felicidad</span>
+</button>
+<!-- Sadness -->
+<button class="emotion-card flex flex-col items-center justify-center p-6 bg-surface-container rounded-2xl transition-all duration-300 border-2 border-transparent hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-4xl mb-3 text-on-surface-variant" data-icon="sentiment_dissatisfied">sentiment_dissatisfied</span>
+<span class="font-label text-xs font-bold uppercase tracking-wider text-on-surface-variant">Tristeza</span>
+</button>
+<!-- Anxiety -->
+<button class="emotion-card flex flex-col items-center justify-center p-6 bg-surface-container rounded-2xl transition-all duration-300 border-2 border-transparent hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-4xl mb-3 text-on-surface-variant" data-icon="psychology_alt">psychology_alt</span>
+<span class="font-label text-xs font-bold uppercase tracking-wider text-on-surface-variant">Ansiedad</span>
+</button>
+<!-- Calm -->
+<button class="emotion-card flex flex-col items-center justify-center p-6 bg-surface-container rounded-2xl transition-all duration-300 border-2 border-transparent hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-4xl mb-3 text-on-surface-variant" data-icon="self_improvement">self_improvement</span>
+<span class="font-label text-xs font-bold uppercase tracking-wider text-on-surface-variant">Calma</span>
+</button>
+<!-- Anger -->
+<button class="emotion-card flex flex-col items-center justify-center p-6 bg-surface-container rounded-2xl transition-all duration-300 border-2 border-transparent hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-4xl mb-3 text-on-surface-variant" data-icon="mode_heat">mode_heat</span>
+<span class="font-label text-xs font-bold uppercase tracking-wider text-on-surface-variant">Enojo</span>
+</button>
+<!-- Tiredness -->
+<button class="emotion-card flex flex-col items-center justify-center p-6 bg-surface-container rounded-2xl transition-all duration-300 border-2 border-transparent hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-4xl mb-3 text-on-surface-variant" data-icon="battery_2_bar">battery_2_bar</span>
+<span class="font-label text-xs font-bold uppercase tracking-wider text-on-surface-variant">Cansancio</span>
+</button>
+</div>
+</section>
+<!-- Question 3: Energy Slider -->
+<section class="mt-8">
+<div class="flex justify-between items-end mb-6">
+<h2 class="font-headline text-2xl text-on-surface leading-none">Nivel de energía</h2>
+<span class="text-primary font-bold text-3xl font-serif">8</span>
+</div>
+<div class="relative py-8">
+<!-- Custom Slider Track -->
+<div class="absolute top-1/2 left-0 w-full h-2 bg-surface-container-highest -translate-y-1/2 rounded-full"></div>
+<div class="absolute top-1/2 left-0 w-[80%] h-2 bg-gradient-to-r from-primary-dim to-primary -translate-y-1/2 rounded-full"></div>
+<!-- Interactive Elements (Visual Representation) -->
+<div class="relative flex justify-between px-1">
+<div class="w-1.5 h-6 bg-outline-variant/30 rounded-full"></div>
+<div class="w-1.5 h-6 bg-outline-variant/30 rounded-full"></div>
+<div class="w-1.5 h-6 bg-outline-variant/30 rounded-full"></div>
+<div class="w-1.5 h-6 bg-outline-variant/30 rounded-full"></div>
+<div class="w-1.5 h-6 bg-outline-variant/30 rounded-full"></div>
+<div class="w-1.5 h-6 bg-outline-variant/30 rounded-full"></div>
+<div class="w-1.5 h-6 bg-outline-variant/30 rounded-full"></div>
+<div class="w-1.5 h-6 bg-outline-variant/30 rounded-full"></div>
+<div class="w-8 h-8 bg-white border-4 border-primary rounded-full -mt-1 shadow-md z-10"></div>
+<div class="w-1.5 h-6 bg-outline-variant/30 rounded-full"></div>
+<div class="w-1.5 h-6 bg-outline-variant/30 rounded-full"></div>
+</div>
+<div class="flex justify-between mt-4">
+<span class="font-label text-[10px] uppercase font-bold tracking-widest text-on-surface/40">Bajo</span>
+<span class="font-label text-[10px] uppercase font-bold tracking-widest text-on-surface/40">Moderado</span>
+<span class="font-label text-[10px] uppercase font-bold tracking-widest text-on-surface/40">Alto</span>
+</div>
+</div>
+</section>
+<!-- Decorative Editorial Card -->
+<div class="relative rounded-3xl overflow-hidden aspect-[16/10] bg-surface-container mt-8 group">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+<img alt="peaceful morning sun lighting through sheer curtains in a clean room" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="soft sunlight filtering through light linen curtains in a peaceful minimalist room with warm wood textures and plants" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAQC__1O7b1JOGnZBA1ob9vkevGEn_nQp9VgOJz_FNXrq9X0lLM75VtvK40M3DJ09gYUs3PJNF_AojZTe2pkUK2_woL3ASeX5SJvM1YQtO532TjnG9lIuBsIWSr7QONmRGZLdMzjhQFE8hdl1Oo6-HX5s2f4AygCKf_qpzmcczjdSus3Aa0NSeqtkFGAGoqo2bqNURILLYUVtPsY-s7Qq8Pd42AcMvfIwsd9zhKt6x5GB4Um2cYEOoh-fOfvCyV06ITXppHgKsJiAM"/>
+<div class="absolute bottom-6 left-6 z-20 text-white">
+<p class="font-serif italic text-lg leading-tight mb-1">"Cada pequeño registro es un paso hacia la claridad."</p>
+<span class="font-label text-[10px] uppercase tracking-widest font-bold opacity-80">Nota del día</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Fixed Action Button Area -->
+<div class="fixed bottom-0 left-0 w-full p-6 bg-gradient-to-t from-background via-background/90 to-transparent z-40">
+<button class="w-full py-5 bg-gradient-to-r from-primary to-primary-dim text-on-primary font-body font-bold rounded-full text-lg shadow-[0_12_32px_rgba(155,79,54,0.2)] active:scale-95 transition-transform duration-200">
+            Enviar registro
+        </button>
+</div>
+</body></html>

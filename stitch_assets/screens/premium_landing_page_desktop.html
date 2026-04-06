@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Refugio Editorial | Acompañamiento Terapéutico Moderno</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#845c32",
+                    "error-dim": "#70030f",
+                    "on-error": "#ffffff",
+                    "primary-dim": "#8c432b",
+                    "tertiary-dim": "#765028",
+                    "secondary": "#596a40",
+                    "secondary-container": "#e4f8c3",
+                    "background": "#fffcf7",
+                    "surface-variant": "#eae9dd",
+                    "on-primary-fixed": "#4d1402",
+                    "primary": "#9b4f36",
+                    "primary-container": "#ffad94",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#64655c",
+                    "on-primary-fixed-variant": "#74311a",
+                    "secondary-fixed": "#e4f8c3",
+                    "on-secondary-fixed": "#3d4d26",
+                    "surface-bright": "#fffcf7",
+                    "surface-dim": "#e4e3d6",
+                    "surface-container-low": "#fcf9f3",
+                    "surface-container-high": "#f0eee4",
+                    "on-secondary-container": "#4f6036",
+                    "on-tertiary-fixed": "#331b00",
+                    "error": "#b33938",
+                    "inverse-primary": "#f7987a",
+                    "outline-variant": "#babaaf",
+                    "secondary-fixed-dim": "#d6eab5",
+                    "inverse-surface": "#0e0e0c",
+                    "surface-container": "#f6f4ec",
+                    "tertiary-fixed-dim": "#d3a272",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#9b4f36",
+                    "on-tertiary-container": "#502f09",
+                    "on-background": "#373831",
+                    "outline": "#818178",
+                    "on-error-container": "#65000b",
+                    "on-surface": "#373831",
+                    "secondary-dim": "#4d5e35",
+                    "on-primary-container": "#692813",
+                    "primary-fixed": "#ffad94",
+                    "on-secondary-fixed-variant": "#596a40",
+                    "tertiary-fixed": "#e1af7e",
+                    "tertiary-container": "#e1af7e",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#fa9b7d",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#f56965",
+                    "on-tertiary-fixed-variant": "#5a3811",
+                    "inverse-on-surface": "#9e9d98",
+                    "surface-container-highest": "#eae9dd",
+                    "surface": "#fffcf7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.5rem",
+                    "lg": "0.75rem",
+                    "xl": "1rem",
+                    "2xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "serif": ["Noto Serif", "serif"],
+                    "sans": ["Plus Jakarta Sans", "sans-serif"],
+                    "headline": ["Noto Serif", "serif"],
+                    "body": ["Plus Jakarta Sans", "sans-serif"],
+                    "label": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3 { font-family: 'Noto Serif', serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .text-editorial-caps {
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        .hero-border {
+            border-bottom: 1px solid rgba(155, 79, 54, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container antialiased">
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md flex justify-between items-center px-8 h-20 border-b border-outline-variant/10">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-2xl">eco</span>
+<span class="font-serif font-bold text-xl tracking-tight text-on-surface">Refugio Editorial</span>
+</div>
+<nav class="hidden md:flex gap-10 items-center">
+<a class="text-sm font-medium text-primary" href="#">Inicio</a>
+<a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">Servicios</a>
+<a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">Comunidad</a>
+<button class="bg-primary text-white px-6 py-2.5 rounded-lg text-sm font-semibold shadow-md shadow-primary/10 hover:shadow-lg hover:-translate-y-0.5 transition-all active:scale-95">Solicitar acceso</button>
+</nav>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img alt="Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBns6qp5NmMhbMdze6cl5AUL7PQ9cwtwMSbeW5F-w9qoo2ZoX0UBnLVkjNynYtJbmxLlAEuNrPilMCFJl_hNFzEkESJLWweM_FPvbf9lswG9ZTcAxmxqQKnm00MvBuYPsM-__rCsAy4pLmZlJKsXOr2z6-UsI83vFgnwdhA0a3_x6YlHX0OfBrvNZFuVl7rxiXbHVvYY1qATTfEU9wHM_Nb-j93Cq_BZBt55DCwiAqiV777Zt0MGrkyf-veTLg1zaaHdC2jrEe2ETSW"/>
+</div>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative px-8 py-24 md:py-40 bg-surface">
+<div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+<div class="space-y-10">
+<div class="space-y-4">
+<span class="text-editorial-caps text-primary/80">Plataforma Clínica Premium</span>
+<h1 class="text-6xl md:text-8xl font-bold leading-[1.05] text-on-surface tracking-tightest">
+                        El puente cálido entre <span class="text-primary italic font-serif">tú</span> y ellos.
+                    </h1>
+</div>
+<p class="text-xl md:text-2xl text-on-surface-variant/80 leading-relaxed font-light max-w-xl">
+                    Acompañamiento terapéutico moderno, humano y profesional para la psicología de vanguardia en Costa Rica.
+                </p>
+<div class="flex flex-col sm:flex-row gap-5 pt-4">
+<button class="bg-primary text-white px-10 py-5 rounded-xl text-lg font-bold shadow-xl shadow-primary/20 hover:bg-primary-dim transition-all">
+                        Comienza gratis
+                    </button>
+<button class="bg-surface-container-high text-on-surface px-10 py-5 rounded-xl text-lg font-bold hover:bg-surface-dim transition-colors">
+                        Ver demostración
+                    </button>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute -inset-4 bg-gradient-to-tr from-primary/5 to-secondary/5 rounded-[2rem] blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
+<div class="relative bg-white rounded-2xl shadow-[0_40px_100px_rgba(155,79,54,0.12)] p-10 border border-primary/5">
+<div class="flex items-center justify-between mb-10">
+<div>
+<h3 class="text-2xl font-bold font-serif text-on-surface">Resumen de Elena</h3>
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-[0.2em] mt-1">Análisis Semanal</p>
+</div>
+<div class="flex gap-2.5">
+<span class="w-3.5 h-3.5 rounded-full bg-secondary/30"></span>
+<span class="w-3.5 h-3.5 rounded-full bg-tertiary/30"></span>
+<span class="w-3.5 h-3.5 rounded-full bg-primary/40"></span>
+</div>
+</div>
+<div class="space-y-8">
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<span class="text-sm font-bold text-on-surface/60">Índice de Ansiedad</span>
+<span class="text-xs font-bold text-secondary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Tendencia Baja
+                                </span>
+</div>
+<div class="h-20 w-full flex items-end gap-2 px-1">
+<div class="flex-1 bg-secondary/10 rounded-lg h-[35%] hover:h-[45%] transition-all"></div>
+<div class="flex-1 bg-secondary/10 rounded-lg h-[55%] hover:h-[65%] transition-all"></div>
+<div class="flex-1 bg-secondary/10 rounded-lg h-[25%] hover:h-[35%] transition-all"></div>
+<div class="flex-1 bg-secondary rounded-lg h-[15%]"></div>
+<div class="flex-1 bg-secondary/20 rounded-lg h-[30%]"></div>
+<div class="flex-1 bg-secondary/10 rounded-lg h-[20%]"></div>
+<div class="flex-1 bg-secondary rounded-lg h-[12%]"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/5">
+<p class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest mb-3">Descanso</p>
+<div class="flex items-baseline gap-1">
+<p class="text-3xl font-bold font-serif text-secondary">7.5</p>
+<span class="text-xs font-bold text-on-surface-variant">hrs</span>
+</div>
+<div class="w-full h-1.5 bg-secondary/10 rounded-full mt-4 overflow-hidden">
+<div class="w-[75%] h-full bg-secondary rounded-full"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/5">
+<p class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest mb-3">Estado de Ánimo</p>
+<p class="text-2xl font-bold font-serif text-tertiary">Estable</p>
+<div class="flex gap-1.5 mt-4">
+<span class="material-symbols-outlined text-tertiary text-lg" style="font-variation-settings: 'FILL' 1;">sentiment_satisfied</span>
+<span class="material-symbols-outlined text-tertiary text-lg" style="font-variation-settings: 'FILL' 1;">sentiment_satisfied</span>
+<span class="material-symbols-outlined text-outline-variant/40 text-lg">sentiment_satisfied</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Metrics Section -->
+<section class="bg-surface-container-lowest py-24 border-y border-outline-variant/5">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid md:grid-cols-3 gap-16 items-start">
+<div class="space-y-4">
+<h2 class="text-4xl font-bold leading-tight tracking-tight">Presencia que inspira calma.</h2>
+<p class="text-on-surface-variant">Elevamos la experiencia digital al nivel de excelencia de tu consultorio físico.</p>
+</div>
+<div class="md:col-span-2 grid grid-cols-2 gap-12 pt-2">
+<div class="space-y-3">
+<p class="text-5xl font-serif font-bold text-primary italic">500+</p>
+<p class="text-on-surface-variant font-medium text-sm leading-relaxed">Especialistas han transformado su práctica clínica con nosotros.</p>
+</div>
+<div class="space-y-3">
+<p class="text-5xl font-serif font-bold text-secondary italic">15k+</p>
+<p class="text-on-surface-variant font-medium text-sm leading-relaxed">Interacciones diarias que fortalecen la alianza terapéutica.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Methodology Section -->
+<section class="py-32 px-8 max-w-7xl mx-auto">
+<div class="text-center mb-24 space-y-4">
+<span class="text-editorial-caps text-primary/60">Flujo de Trabajo</span>
+<h2 class="text-5xl md:text-6xl font-bold tracking-tight">Un ritmo que respira contigo</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Feature 1 -->
+<div class="md:col-span-7 group relative overflow-hidden rounded-3xl bg-surface-container-high p-12 transition-all hover:bg-surface-container-highest">
+<div class="relative z-10 space-y-6">
+<div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">auto_stories</span>
+</div>
+<div class="space-y-3">
+<h3 class="text-3xl font-bold">Registro Clínico Evolutivo</h3>
+<p class="text-on-surface-variant text-lg max-w-md">Documenta sesiones con una interfaz diseñada para minimizar la carga cognitiva y maximizar la presencia.</p>
+</div>
+</div>
+<div class="mt-12 -mr-12 -mb-12 relative h-64 overflow-hidden rounded-tl-3xl shadow-2xl transition-transform duration-700 group-hover:scale-105">
+<img class="w-full h-full object-cover" data-alt="minimalist modern notebook and fountain pen on a wooden desk with warm cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO6Drnx2Le2GFC29VHAfhfSdFlxF63EaC86DmHMRK5O2Tw6iazDYVAZprPS5x1mUGZU5N7oZWfzs6PVLMAMBAxQhsirDMjWfMtbSEv73iqeBULe8hifyUZ8DOgf4UNxwdIiky0EMuXQamSB7AJ7RT83pYhUYU9sB93ysG7uG3zHQIJ1-oCzbx_fqyIl_X79HSeJ-D5g8ArsS4UqFMYKu-FmJfhBTzZRSJBN1AvmNXJGIfeQLtVGznkaTQAjOEyQvkcq7ymaEw6_QF3"/>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="md:col-span-5 bg-secondary-container/30 rounded-3xl p-12 flex flex-col justify-between border border-secondary/5">
+<div class="space-y-6">
+<div class="w-14 h-14 rounded-2xl bg-secondary text-white shadow-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">add_task</span>
+</div>
+<div class="space-y-3">
+<h3 class="text-3xl font-bold text-on-secondary-container">Autorregistros Dinámicos</h3>
+<p class="text-on-secondary-container/70 text-lg">Cuestionarios personalizados que tus pacientes completan en su ritmo, manteniendo el hilo conductor.</p>
+</div>
+</div>
+<div class="mt-12 bg-white/50 backdrop-blur-sm p-6 rounded-2xl border border-white/50 shadow-sm">
+<div class="flex flex-col gap-3">
+<div class="h-2.5 w-1/3 bg-secondary/20 rounded-full"></div>
+<div class="h-2.5 w-full bg-secondary/10 rounded-full"></div>
+<div class="h-2.5 w-4/5 bg-secondary/10 rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Feature 3 -->
+<div class="md:col-span-12 grid lg:grid-cols-2 gap-12 bg-surface-variant rounded-3xl p-12 items-center">
+<div class="space-y-8">
+<div class="w-14 h-14 rounded-2xl bg-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-tertiary-container text-3xl">query_stats</span>
+</div>
+<div class="space-y-4">
+<h3 class="text-4xl font-bold">Visualización del Camino</h3>
+<p class="text-on-surface-variant text-xl leading-relaxed">Identifica patrones invisibles a través de datos agregados con sensibilidad clínica.</p>
+</div>
+<ul class="space-y-4">
+<li class="flex items-center gap-3 text-on-surface font-medium">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            Reportes ejecutivos para el paciente
+                        </li>
+<li class="flex items-center gap-3 text-on-surface font-medium">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            Detección proactiva de crisis
+                        </li>
+</ul>
+</div>
+<div class="relative h-80 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="thoughtful mature woman in a calm therapy session" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqAee4mlhifJ6V0DwHeb3Icdj46wmr9UwoR0lLdN7kZfZrgDtjpj15hYcwNJDDS4_rD9nSdomZ6HeALJlc2N3aYFRoeXNScPrsDgGmpmYstgueqD1aNmTlmcyDvZqA3kzCg7U3Mz70OuKqLPbyrV85f4Delb5KwQNRFxDhrCm1q_ZEPpdh6dqO_17TW1C12UsA7p2Zrrg5qXpxuQaQslV2Db7UMGtFZKxIA9HW9AKtZeGa8z72BYjtPInzuClszbkywrGNR73dRegs"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonial Section -->
+<section class="py-40 bg-white">
+<div class="max-w-4xl mx-auto px-8 text-center space-y-12">
+<span class="material-symbols-outlined text-primary/40 text-7xl font-light">format_quote</span>
+<h2 class="text-4xl md:text-5xl font-serif italic text-on-surface leading-[1.35] tracking-tight">
+                "La tecnología no reemplaza la empatía; la libera para que puedas enfocarte en lo que realmente importa: el ser humano frente a ti."
+            </h2>
+<div class="space-y-2 pt-6">
+<p class="font-bold text-lg text-on-surface">Dra. María Fernanda Quesada</p>
+<p class="text-editorial-caps text-on-surface-variant/70">Psicóloga Clínica, San José</p>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-32 px-8">
+<div class="max-w-6xl mx-auto bg-primary text-white rounded-[3rem] p-16 md:p-24 relative overflow-hidden text-center shadow-[0_50px_100px_-20px_rgba(155,79,54,0.4)]">
+<div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.1),transparent)]"></div>
+<div class="relative z-10 space-y-10">
+<h2 class="text-5xl md:text-7xl font-bold font-serif leading-tight">¿Elevamos tu práctica clínica?</h2>
+<p class="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto font-light leading-relaxed">
+                    Únete a la nueva generación de terapeutas en Costa Rica que eligen la precisión sin perder la calidez.
+                </p>
+<div class="flex flex-col sm:flex-row gap-6 justify-center items-center pt-6">
+<button class="bg-white text-primary px-12 py-5 rounded-xl text-xl font-extrabold hover:scale-105 transition-transform shadow-xl">
+                        Comenzar hoy
+                    </button>
+<button class="text-white border border-white/40 px-12 py-5 rounded-xl text-xl font-bold hover:bg-white/10 transition-colors">
+                        Agendar llamada
+                    </button>
+</div>
+<p class="text-sm text-white/50 font-medium">Sin tarjetas de crédito. Periodo de prueba de 14 días.</p>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-surface-container py-24 px-8 border-t border-outline-variant/10">
+<div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-20">
+<div class="space-y-8">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl">eco</span>
+<span class="font-serif font-bold text-2xl text-on-surface">Refugio Editorial</span>
+</div>
+<p class="text-on-surface-variant/80 text-sm leading-relaxed">Redefiniendo el acompañamiento psicológico a través del diseño y la empatía humana. San José, Costa Rica.</p>
+<div class="flex gap-5">
+<a class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-primary hover:scale-110 transition-all" href="#">
+<span class="material-symbols-outlined text-xl">share</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-primary hover:scale-110 transition-all" href="#">
+<span class="material-symbols-outlined text-xl">mail</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-on-surface mb-8 tracking-wide">Plataforma</h4>
+<ul class="space-y-4 text-sm text-on-surface-variant/70">
+<li><a class="hover:text-primary transition-colors" href="#">Características</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Precios</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Seguridad de Datos</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Historias de éxito</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-on-surface mb-8 tracking-wide">Recursos</h4>
+<ul class="space-y-4 text-sm text-on-surface-variant/70">
+<li><a class="hover:text-primary transition-colors" href="#">Blog Editorial</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Webinars</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Directorio Médico</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Centro de Ayuda</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-on-surface mb-8 tracking-wide">Legal</h4>
+<ul class="space-y-4 text-sm text-on-surface-variant/70">
+<li><a class="hover:text-primary transition-colors" href="#">Privacidad</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Términos</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Consentimiento</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-24 pt-12 border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-[10px] text-on-surface-variant/50 uppercase tracking-[0.3em] font-bold">© 2024 Refugio Editorial</p>
+<div class="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/50">
+<a class="hover:text-primary" href="#">LinkedIn</a>
+<a class="hover:text-primary" href="#">Instagram</a>
+</div>
+</div>
+</footer>
+<!-- Mobile Nav -->
+<nav class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] z-50 flex justify-around items-center px-2 py-3 bg-white/90 backdrop-blur-xl rounded-2xl border border-outline-variant/20 shadow-2xl">
+<a class="flex flex-col items-center justify-center text-primary bg-primary/5 rounded-xl px-6 py-2" href="#">
+<span class="material-symbols-outlined">home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/50 px-6 py-2" href="#">
+<span class="material-symbols-outlined">edit_note</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/50 px-6 py-2" href="#">
+<span class="material-symbols-outlined">insights</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/50 px-6 py-2" href="#">
+<span class="material-symbols-outlined">person</span>
+</a>
+</nav>
+</body></html>

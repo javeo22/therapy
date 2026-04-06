@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#845c32",
+                    "error-dim": "#70030f",
+                    "on-error": "#ffffff",
+                    "primary-dim": "#8c432b",
+                    "tertiary-dim": "#765028",
+                    "secondary": "#596a40",
+                    "secondary-container": "#e4f8c3",
+                    "background": "#fffcf7",
+                    "surface-variant": "#eae9dd",
+                    "on-primary-fixed": "#4d1402",
+                    "primary": "#9b4f36",
+                    "primary-container": "#ffad94",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#64655c",
+                    "on-primary-fixed-variant": "#74311a",
+                    "secondary-fixed": "#e4f8c3",
+                    "on-secondary-fixed": "#3d4d26",
+                    "surface-bright": "#fffcf7",
+                    "surface-dim": "#e4e3d6",
+                    "surface-container-low": "#fcf9f3",
+                    "surface-container-high": "#f0eee4",
+                    "on-secondary-container": "#4f6036",
+                    "on-tertiary-fixed": "#331b00",
+                    "error": "#b33938",
+                    "inverse-primary": "#f7987a",
+                    "outline-variant": "#babaaf",
+                    "secondary-fixed-dim": "#d6eab5",
+                    "inverse-surface": "#0e0e0c",
+                    "surface-container": "#f6f4ec",
+                    "tertiary-fixed-dim": "#d3a272",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#9b4f36",
+                    "on-tertiary-container": "#502f09",
+                    "on-background": "#373831",
+                    "outline": "#818178",
+                    "on-error-container": "#65000b",
+                    "on-surface": "#373831",
+                    "secondary-dim": "#4d5e35",
+                    "on-primary-container": "#692813",
+                    "primary-fixed": "#ffad94",
+                    "on-secondary-fixed-variant": "#596a40",
+                    "tertiary-fixed": "#e1af7e",
+                    "tertiary-container": "#e1af7e",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#fa9b7d",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#f56965",
+                    "on-tertiary-fixed-variant": "#5a3811",
+                    "inverse-on-surface": "#9e9d98",
+                    "surface-container-highest": "#eae9dd",
+                    "surface": "#fffcf7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0 12px 32px rgba(55, 56, 49, 0.06);
+        }
+        .cta-gradient {
+            background: linear-gradient(135deg, #9b4f36 0%, #8c432b 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#fffcf7] dark:bg-stone-950 backdrop-blur-xl bg-opacity-80 flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#9b4f36] dark:text-[#d67d61]">menu</span>
+<h1 class="font-serif font-bold text-xl text-[#373831] dark:text-[#fcf9f3]">Refugio Editorial</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-highest">
+<img alt="Foto de perfil del usuario" class="w-full h-full object-cover" data-alt="Portrait of a professional female therapist with a warm smile in a brightly lit studio with natural earth tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa79QOyLq8fKAsdh446f8ibN9StvRSWMr4-jLf-fQyXTqCuyIEpBiFxCurcCctcccIsOiVuLc4g61H_JZDUs9v8kGBTisnfWD9Uo88yS__FYkxHxpR-6nFr5InUZF2kZX-pViRJX-A7w3k5l-bqzcElb_l2lD-2O-3okDpMEtiYCoz3eiQOhXh4aHfZUvpysyrIy4jQKLdDzeARhjFJWpxz-saEnEQSlhh7HComQtGxvx06u9ub6crgMGS5ZHbwdExI8XUQEzl99FH"/>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-md mx-auto">
+<!-- Editorial Header -->
+<section class="mb-10">
+<span class="text-xs font-bold tracking-[0.1em] text-secondary mb-2 block font-label uppercase">Gabinete Privado</span>
+<h2 class="font-headline text-4xl text-on-surface tracking-tight mb-2">Mis Pacientes</h2>
+<p class="text-on-surface-variant font-body leading-relaxed">Acompañando procesos de crecimiento y sanación.</p>
+</section>
+<!-- Search & Filter Bar -->
+<div class="relative mb-8">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">search</span>
+</div>
+<input class="w-full h-14 bg-surface-container-highest border-none border-b-2 border-transparent focus:border-primary focus:ring-0 rounded-xl pl-12 pr-4 text-on-surface placeholder:text-on-surface-variant transition-all" placeholder="Buscar por nombre..." type="text"/>
+</div>
+<!-- Patient List -->
+<div class="space-y-4">
+<!-- Patient Card 1 -->
+<div class="bg-surface-container-low p-5 rounded-3xl editorial-shadow group active:scale-95 transition-all duration-200">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-2xl overflow-hidden relative">
+<img alt="María Rodríguez" class="w-full h-full object-cover" data-alt="Close up portrait of a young woman with a calm expression, soft natural lighting, editorial photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZqe8UYXEc9j8tb-e7Oob3CV7DAY1yPo-JB0s0BU0uM_gqcQedz7lJOq6XQJO52DNQAMVxeedu8rrXSXdkrxirLEHlacnK5PVEGhHMmU_S7MtiD3J5rRf91CaXtmrv-o6olXfr5Jny1aTbham3OS4r_qK356gLYJ-VCweohqPg9Aitr4ywBn2UxiDWiK8nPMbNoXIOGMFpcsStdpls7O0hW77vsr7uVqS6LDrhIuLGKuMiPhA9IS_maIMX4ex64PGPqBTnXmA4f0jk"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-secondary rounded-full border-2 border-surface-container-low"></div>
+</div>
+<div>
+<h3 class="font-headline text-lg font-bold text-on-surface">María Rodríguez</h3>
+<p class="text-sm text-on-surface-variant italic">Ansiedad Generalizada</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">more_vert</span>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/20 flex justify-between items-end">
+<div class="space-y-1">
+<div class="flex items-center gap-2 text-xs font-label uppercase tracking-wider text-tertiary">
+<span class="material-symbols-outlined text-[14px]">event</span>
+                            Última sesión: 12 Oct
+                        </div>
+<div class="flex items-center gap-2 text-xs font-label uppercase tracking-wider text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">calendar_month</span>
+                            8 sesiones completadas
+                        </div>
+</div>
+<div class="h-1.5 w-16 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3"></div>
+</div>
+</div>
+</div>
+<!-- Patient Card 2 -->
+<div class="bg-surface-container-low p-5 rounded-3xl editorial-shadow group active:scale-95 transition-all duration-200">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-2xl overflow-hidden relative">
+<img alt="Juan Pérez" class="w-full h-full object-cover" data-alt="Modern portrait of a man in his late 30s with short hair, warm outdoor lighting, blurred greenery background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBynAUxko3E6qxpXsxOxZyfGKmOEP1-R5ZYleseWcuuoO545TvVgOWFCc39xOS8HgtUgcssOfDhTICeyb7NHthBKbINECHJlekcxgtti_71ZuL41caMVsPuUieUmf3r8uBeoocbEWlWBd2nNxQ_PWaJdA4kegsClSBE8DzD3sWrA8wDogH1SAxiG28HaMC_ol6Mlp5BsgM-K8Zll3-xmfcf4VmZenqvfMBcNi5_2P5OVCVhyMm6DriBaiW1T_wK4zRV8l29YzqMoIAx"/>
+</div>
+<div>
+<h3 class="font-headline text-lg font-bold text-on-surface">Juan Pérez</h3>
+<p class="text-sm text-on-surface-variant italic">Gestión del Duelo</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">more_vert</span>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/20 flex justify-between items-end">
+<div class="space-y-1">
+<div class="flex items-center gap-2 text-xs font-label uppercase tracking-wider text-tertiary">
+<span class="material-symbols-outlined text-[14px]">event</span>
+                            Última sesión: 15 Oct
+                        </div>
+<div class="flex items-center gap-2 text-xs font-label uppercase tracking-wider text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">calendar_month</span>
+                            3 sesiones completadas
+                        </div>
+</div>
+<div class="h-1.5 w-16 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-1/4"></div>
+</div>
+</div>
+</div>
+<!-- Patient Card 3 - Highlighted/Active -->
+<div class="bg-surface-container-highest p-5 rounded-3xl editorial-shadow relative overflow-hidden active:scale-95 transition-all duration-200 border-l-4 border-primary">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-2xl overflow-hidden relative">
+<img alt="Elena Gómez" class="w-full h-full object-cover" data-alt="Editorial portrait of a woman looking thoughtfully away, soft morning light in a minimal interior space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjak96QX0-FHoUyjY-lV3BIoPELpe7ZJl6xDgPDW4ju1BW9o7-GteSthQBKEBuEPhub7MXIRKW5-VfcpEbcM09rfhISU0uJNTAMMUdUaMarEjUsLLylUCUrJe9oPtfmOQT-kUY0CuYyotV8lHCvK3Ue0sVeOvtqAvfhGMu06nVxzZpDinda6bVSPJWA6WdEDQwN5hDiEyVif16w-pnODPqMppc_MkNV36a66fSQ3OC2Gdk6XyVpNUFA0byuBus7WGseB5fKZrbWPm4"/>
+<div class="absolute top-0 left-0 w-full h-full bg-primary/10"></div>
+</div>
+<div>
+<h3 class="font-headline text-lg font-bold text-on-surface">Elena Gómez</h3>
+<p class="text-sm text-on-surface-variant italic">Relaciones Interpersonales</p>
+</div>
+</div>
+<div class="bg-primary-container/30 px-2 py-1 rounded-lg">
+<span class="text-[10px] font-bold text-primary-dim uppercase tracking-tighter">HOY</span>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/30 flex justify-between items-end">
+<div class="space-y-1">
+<div class="flex items-center gap-2 text-xs font-label uppercase tracking-wider text-primary font-bold">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">history</span>
+                            Última sesión: Ayer
+                        </div>
+<div class="flex items-center gap-2 text-xs font-label uppercase tracking-wider text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">calendar_month</span>
+                            12 sesiones completadas
+                        </div>
+</div>
+<div class="h-1.5 w-16 bg-outline-variant/20 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button -->
+<button class="fixed right-6 bottom-28 w-16 h-16 rounded-full cta-gradient text-on-primary editorial-shadow flex items-center justify-center z-40 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-[#fffcf7]/90 dark:bg-stone-900/90 backdrop-blur-2xl rounded-t-[1.5rem] border-t border-[#babaaf]/20 shadow-[0_-12px_32px_rgba(55,56,49,0.06)]">
+<a class="flex flex-col items-center justify-center bg-[#f6f4ec] dark:bg-stone-800 text-[#9b4f36] rounded-2xl px-5 py-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-sans text-[10px] uppercase tracking-widest font-bold mt-1">Pacientes</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#373831]/50 dark:text-stone-400 px-5 py-2 hover:text-[#9b4f36] transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-sans text-[10px] uppercase tracking-widest font-bold mt-1">Sesiones</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#373831]/50 dark:text-stone-400 px-5 py-2 hover:text-[#9b4f36] transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-sans text-[10px] uppercase tracking-widest font-bold mt-1">Ajustes</span>
+</a>
+</nav>
+</body></html>

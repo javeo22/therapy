@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#845c32",
+                    "error-dim": "#70030f",
+                    "on-error": "#ffffff",
+                    "primary-dim": "#8c432b",
+                    "tertiary-dim": "#765028",
+                    "secondary": "#596a40",
+                    "secondary-container": "#e4f8c3",
+                    "background": "#fffcf7",
+                    "surface-variant": "#eae9dd",
+                    "on-primary-fixed": "#4d1402",
+                    "primary": "#9b4f36",
+                    "primary-container": "#ffad94",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#64655c",
+                    "on-primary-fixed-variant": "#74311a",
+                    "secondary-fixed": "#e4f8c3",
+                    "on-secondary-fixed": "#3d4d26",
+                    "surface-bright": "#fffcf7",
+                    "surface-dim": "#e4e3d6",
+                    "surface-container-low": "#fcf9f3",
+                    "surface-container-high": "#f0eee4",
+                    "on-secondary-container": "#4f6036",
+                    "on-tertiary-fixed": "#331b00",
+                    "error": "#b33938",
+                    "inverse-primary": "#f7987a",
+                    "outline-variant": "#babaaf",
+                    "secondary-fixed-dim": "#d6eab5",
+                    "inverse-surface": "#0e0e0c",
+                    "surface-container": "#f6f4ec",
+                    "tertiary-fixed-dim": "#d3a272",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#9b4f36",
+                    "on-tertiary-container": "#502f09",
+                    "on-background": "#373831",
+                    "outline": "#818178",
+                    "on-error-container": "#65000b",
+                    "on-surface": "#373831",
+                    "secondary-dim": "#4d5e35",
+                    "on-primary-container": "#692813",
+                    "primary-fixed": "#ffad94",
+                    "on-secondary-fixed-variant": "#596a40",
+                    "tertiary-fixed": "#e1af7e",
+                    "tertiary-container": "#e1af7e",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#fa9b7d",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#f56965",
+                    "on-tertiary-fixed-variant": "#5a3811",
+                    "inverse-on-surface": "#9e9d98",
+                    "surface-container-highest": "#eae9dd",
+                    "surface": "#fffcf7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "xxl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .fill-icon {
+        font-variation-settings: 'FILL' 1;
+      }
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      .serif-display {
+        font-family: 'Noto Serif', serif;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 w-full z-50 bg-[#fffcf7] dark:bg-stone-950 backdrop-blur-xl bg-opacity-80 flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#9b4f36] dark:text-[#d67d61]">menu</span>
+<h1 class="font-serif font-bold text-xl text-[#373831] dark:text-[#fcf9f3]">Refugio Editorial</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="Avatar" class="w-full h-full object-cover" data-alt="close-up portrait of a serene young woman with natural light, warm tones and soft focus background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3rmDvgIwwJpeTqCnLWRewDxPKJ3toMD2z3XJWXOFhBaI1kPwgSOLAf2x5xx8yBL8pZz83UPgSXDCq9CpDwP8Cd95UnJRtS4QwVnm--ttnBWgK3bc-Did4fabBLu9pXsc5684FIjx_HkO569xsZkNVBAIxqgkjdLivk3EO9CnMacrJ3_4jfvNMV-jxXTgkM7oFQergi8q_SAHMHO7XPotol9FIcCHDdJQp0DhdDtiTHO7hmFlLL2pMtjnijhSc65AtRMLttMBU6xYF"/>
+</div>
+</header>
+<main class="pt-24 px-6 space-y-8 max-w-md mx-auto">
+<!-- Hero Greeting Section -->
+<section class="space-y-1">
+<h2 class="serif-display text-4xl font-bold text-on-surface tracking-tight">Hola, María</h2>
+<p class="text-on-surface-variant font-medium">Es un buen momento para conectar contigo.</p>
+</section>
+<!-- Engagement Indicator / Streak -->
+<section class="relative overflow-hidden bg-secondary-container rounded-xxl p-6 flex items-center gap-4">
+<div class="absolute -right-4 -top-4 opacity-10">
+<span class="material-symbols-outlined text-secondary text-8xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div class="bg-white/40 p-3 rounded-xl backdrop-blur-sm">
+<span class="material-symbols-outlined text-secondary text-3xl fill-icon">local_fire_department</span>
+</div>
+<div>
+<p class="text-on-secondary-container font-bold leading-tight">Racha de 5 días seguidos cuidando tu salud mental</p>
+<p class="text-on-secondary-container/70 text-xs mt-1 uppercase tracking-widest font-bold">¡CONTINÚA ASÍ!</p>
+</div>
+</section>
+<!-- Pending Tasks / Bento Style -->
+<section class="space-y-4">
+<div class="flex justify-between items-end">
+<h3 class="font-serif text-xl font-bold text-on-surface">Tareas pendientes</h3>
+<span class="text-tertiary text-sm font-bold">Ver todo</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xxl p-6 shadow-[0_12px_32px_rgba(55,56,49,0.06)] flex flex-col gap-4 border border-outline-variant/10">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<p class="text-xs font-bold text-primary uppercase tracking-widest">AUTOREGISTRO</p>
+<h4 class="text-lg font-bold text-on-surface">Diario de gratitud</h4>
+</div>
+<span class="material-symbols-outlined text-tertiary">edit_note</span>
+</div>
+<p class="text-on-surface-variant text-sm">Tienes 1 autorregistro pendiente para completar tu reflexión de hoy.</p>
+<button class="w-full py-3 px-6 bg-gradient-to-r from-primary to-primary-dim text-on-primary rounded-full font-bold text-sm flex justify-center items-center gap-2">
+                    Comenzar registro
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Metric Trend Charts -->
+<section class="space-y-4">
+<h3 class="font-serif text-xl font-bold text-on-surface">Tu progreso</h3>
+<div class="grid grid-cols-1 gap-4">
+<!-- Mood Card -->
+<div class="bg-surface-container rounded-xxl p-5 space-y-4">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-xl fill-icon">sentiment_satisfied</span>
+<span class="font-bold text-on-surface">Estado de ánimo</span>
+</div>
+<span class="text-xs font-bold text-secondary">Estable</span>
+</div>
+<div class="h-16 flex items-end justify-between gap-1 px-1">
+<div class="w-full bg-surface-variant rounded-t-full h-8"></div>
+<div class="w-full bg-surface-variant rounded-t-full h-10"></div>
+<div class="w-full bg-secondary-fixed-dim rounded-t-full h-12"></div>
+<div class="w-full bg-secondary-fixed-dim rounded-t-full h-14"></div>
+<div class="w-full bg-secondary rounded-t-full h-16"></div>
+<div class="w-full bg-secondary rounded-t-full h-13"></div>
+<div class="w-full bg-secondary rounded-t-full h-15"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Anxiety Card -->
+<div class="bg-surface-container rounded-xxl p-5 space-y-3">
+<span class="material-symbols-outlined text-primary text-xl">air</span>
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Ansiedad</p>
+<p class="text-2xl font-bold text-on-surface tracking-tight">Baja</p>
+</div>
+<!-- Sleep Card -->
+<div class="bg-surface-container rounded-xxl p-5 space-y-3">
+<span class="material-symbols-outlined text-tertiary text-xl">bedtime</span>
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Sueño</p>
+<p class="text-2xl font-bold text-on-surface tracking-tight">7.5h</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Activity List -->
+<section class="space-y-4 pb-12">
+<h3 class="font-serif text-xl font-bold text-on-surface">Actividad reciente</h3>
+<div class="space-y-3">
+<div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-xl">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">event_available</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-on-surface text-sm">Sesión completada</p>
+<p class="text-on-surface-variant text-xs">Con Dr. Aranda</p>
+</div>
+<span class="text-on-surface-variant text-xs font-medium">12 Oct</span>
+</div>
+<div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-xl">
+<div class="w-10 h-10 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">assignment_turned_in</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-on-surface text-sm">Formulario enviado</p>
+<p class="text-on-surface-variant text-xs">Evaluación semanal</p>
+</div>
+<span class="text-on-surface-variant text-xs font-medium">10 Oct</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-[#fffcf7]/90 dark:bg-stone-900/90 backdrop-blur-2xl border-t border-[#babaaf]/20 shadow-[0_-12px_32px_rgba(55,56,49,0.06)] rounded-t-[1.5rem]">
+<a class="flex flex-col items-center justify-center bg-[#f6f4ec] dark:bg-stone-800 text-[#9b4f36] rounded-2xl px-5 py-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined fill-icon">home</span>
+<span class="font-sans text-[10px] uppercase tracking-widest font-bold mt-1">Inicio</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#373831]/50 dark:text-stone-400 px-5 py-2 hover:text-[#9b4f36] transition-all active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="font-sans text-[10px] uppercase tracking-widest font-bold mt-1">Registros</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#373831]/50 dark:text-stone-400 px-5 py-2 hover:text-[#9b4f36] transition-all active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-sans text-[10px] uppercase tracking-widest font-bold mt-1">Progreso</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#373831]/50 dark:text-stone-400 px-5 py-2 hover:text-[#9b4f36] transition-all active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-sans text-[10px] uppercase tracking-widest font-bold mt-1">Perfil</span>
+</a>
+</nav>
+</body></html>
