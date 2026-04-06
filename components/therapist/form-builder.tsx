@@ -14,6 +14,7 @@ import {
 import { formTemplateSchema } from "@/lib/utils/form-validation";
 import { createTemplate } from "@/lib/actions/form-templates";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/toast";
 import {
   Plus,
   Trash2,
@@ -30,6 +31,7 @@ interface FormBuilderProps {
 
 export function FormBuilder({ patientRecordId }: FormBuilderProps) {
   const router = useRouter();
+  const { toast } = useToast();
   const [title, setTitle] = useState("");
   const [fields, setFields] = useState<FormField[]>([]);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -133,6 +135,7 @@ export function FormBuilder({ patientRecordId }: FormBuilderProps) {
       return;
     }
 
+    toast("Autorregistro creado");
     router.push(`/terapeuta/pacientes/${patientRecordId}`);
     router.refresh();
   }

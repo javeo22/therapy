@@ -24,6 +24,27 @@ export default async function NuevaSesionPage({
     .eq("patient_record_id", id)
     .order("created_at", { ascending: true });
 
+  // Get last session's metric values for context
+  const { data: lastSession } = await supabase
+    .from("sessions")
+    .select("id")
+    .eq("patient_record_id", id)
+    .order("session_date", { ascending: false })
+    .limit(1)
+    .single();
+
+  const previousValues: Record<string, number> = {};
+  if (lastSession) {
+    const { data: lastMetricValues } = await supabase
+      .from("metric_values")
+      .select("metric_id, value")
+      .eq("session_id", lastSession.id);
+
+    (lastMetricValues || []).forEach((mv) => {
+      previousValues[mv.metric_id] = mv.value;
+    });
+  }
+
   return (
     <div className="py-6">
       <h2 className="font-serif text-2xl font-bold text-on-surface mb-1">
@@ -36,6 +57,7 @@ export default async function NuevaSesionPage({
         patientRecordId={id}
         patientName={patient.full_name}
         metrics={metrics || []}
+        previousValues={previousValues}
       />
     </div>
   );

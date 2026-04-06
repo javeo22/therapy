@@ -89,6 +89,67 @@ export async function getSession(id: string) {
   return { data: { ...data, metric_values: metricValues || [] } };
 }
 
+export async function updateSession(
+  sessionId: string,
+  patientRecordId: string,
+  formData: FormData
+) {
+  const supabase = await createClient();
+
+  const sessionDate = formData.get("session_date") as string;
+  const notes = formData.get("notes") as string;
+
+  if (!sessionDate) return { error: "La fecha es requerida." };
+
+  const { error } = await supabase
+    .from("sessions")
+    .update({
+      session_date: sessionDate,
+      notes: notes?.trim() || null,
+    })
+    .eq("id", sessionId);
+
+  if (error) return { error: error.message };
+
+  // Delete existing metric values and re-insert
+  await supabase.from("metric_values").delete().eq("session_id", sessionId);
+
+  const metricEntries: { session_id: string; metric_id: string; value: number }[] = [];
+  for (const [key, val] of formData.entries()) {
+    if (key.startsWith("metric_")) {
+      const metricId = key.replace("metric_", "");
+      const value = parseInt(val as string, 10);
+      if (!isNaN(value)) {
+        metricEntries.push({ session_id: sessionId, metric_id: metricId, value });
+      }
+    }
+  }
+
+  if (metricEntries.length > 0) {
+    await supabase.from("metric_values").insert(metricEntries);
+  }
+
+  revalidatePath(`/terapeuta/pacientes/${patientRecordId}`);
+  revalidatePath(`/terapeuta/pacientes/${patientRecordId}/sesiones`);
+  revalidatePath(`/terapeuta/pacientes/${patientRecordId}/sesiones/${sessionId}`);
+  return { success: true };
+}
+
+export async function deleteSession(sessionId: string, patientRecordId: string) {
+  const supabase = await createClient();
+
+  const { error } = await supabase
+    .from("sessions")
+    .delete()
+    .eq("id", sessionId);
+
+  if (error) return { error: error.message };
+
+  revalidatePath(`/terapeuta/pacientes/${patientRecordId}`);
+  revalidatePath(`/terapeuta/pacientes/${patientRecordId}/sesiones`);
+  return { success: true };
+}
+
 export async function getSessionWithMetrics(id: string) {
   const supabase = await createClient();
 

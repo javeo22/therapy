@@ -6,10 +6,12 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { createPatient } from "@/lib/actions/patients";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/toast";
 import { Copy, Check, Link as LinkIcon } from "lucide-react";
 
 export function PatientForm() {
   const router = useRouter();
+  const { toast } = useToast();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [inviteLink, setInviteLink] = useState<string | null>(null);
@@ -30,6 +32,7 @@ export function PatientForm() {
       return;
     }
 
+    toast("Paciente creado");
     if (result.data?.invite_token) {
       const baseUrl = window.location.origin;
       setInviteLink(`${baseUrl}/invitacion?token=${result.data.invite_token}`);

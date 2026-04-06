@@ -1,4 +1,5 @@
 import { SubmissionList } from "@/components/therapist/submission-list";
+import { ToggleFormButton } from "@/components/therapist/toggle-form-button";
 import { Card } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
@@ -50,11 +51,12 @@ export default async function FormDetailPage({
       <h2 className="font-serif text-2xl font-bold text-on-surface mb-1">
         {template.title}
       </h2>
-      <p className="text-sm text-on-surface-variant mb-4">
-        {fields.length} {fields.length === 1 ? "campo" : "campos"}
-        {" · "}
-        {template.is_active ? "Activo" : "Inactivo"}
-      </p>
+      <div className="flex items-center gap-3 mb-4">
+        <p className="text-sm text-on-surface-variant">
+          {fields.length} {fields.length === 1 ? "campo" : "campos"}
+        </p>
+        <ToggleFormButton formId={formId} isActive={template.is_active} />
+      </div>
 
       {/* Template structure */}
       <Card variant="elevated" className="mb-4">

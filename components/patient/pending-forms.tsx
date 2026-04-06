@@ -13,7 +13,7 @@ export function PendingForms({ forms }: PendingFormsProps) {
       <Card className="flex items-center gap-3 py-4 px-4">
         <ClipboardList size={18} className="text-on-surface-variant/40" />
         <p className="text-sm text-on-surface-variant">
-          No tenés formularios pendientes.
+          No tenés autorregistros asignados.
         </p>
       </Card>
     );
@@ -31,7 +31,7 @@ export function PendingForms({ forms }: PendingFormsProps) {
               <p className="text-sm font-medium text-on-surface truncate">
                 {form.title}
               </p>
-              <p className="text-xs text-tertiary font-medium">Pendiente</p>
+              <p className="text-xs text-tertiary font-medium">Completar</p>
             </div>
             <ChevronRight size={16} className="text-on-surface-variant/40" />
           </Card>

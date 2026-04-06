@@ -47,13 +47,14 @@ export default async function RegistrosPage() {
     .eq("patient_id", user!.id)
     .order("submitted_at", { ascending: false });
 
-  const submittedTemplateIds = new Set(
-    (submissions || []).map((s) => s.form_template_id)
-  );
-
-  const pendingForms = (templates || []).filter(
-    (t) => !submittedTemplateIds.has(t.id)
-  );
+  // Count submissions per template
+  const submissionCounts = new Map<string, number>();
+  (submissions || []).forEach((s) => {
+    submissionCounts.set(
+      s.form_template_id,
+      (submissionCounts.get(s.form_template_id) || 0) + 1
+    );
+  });
 
   return (
     <div className="py-6">
@@ -61,87 +62,44 @@ export default async function RegistrosPage() {
         Autorregistros
       </h2>
 
-      {/* Pending */}
-      {pendingForms.length > 0 && (
+      {/* Active forms — always shown, can be filled repeatedly */}
+      {templates && templates.length > 0 ? (
         <>
           <h3 className="text-sm font-semibold text-on-surface mb-2">
-            Pendientes
+            Formularios activos
           </h3>
           <div className="flex flex-col gap-2 mb-6">
-            {pendingForms.map((form) => (
-              <Link key={form.id} href={`/paciente/registros/${form.id}`}>
-                <Card className="flex items-center gap-3 py-4 px-4 active:scale-[0.98] transition-transform duration-150">
-                  <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <ClipboardList size={16} className="text-primary" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-on-surface truncate">
-                      {form.title}
-                    </p>
-                    <p className="text-xs text-tertiary font-medium">
-                      Pendiente
-                    </p>
-                  </div>
-                  <ChevronRight
-                    size={16}
-                    className="text-on-surface-variant/40"
-                  />
-                </Card>
-              </Link>
-            ))}
+            {templates.map((form) => {
+              const count = submissionCounts.get(form.id) || 0;
+
+              return (
+                <Link key={form.id} href={`/paciente/registros/${form.id}`}>
+                  <Card className="flex items-center gap-3 py-4 px-4 active:scale-[0.98] transition-transform duration-150">
+                    <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                      <ClipboardList size={16} className="text-primary" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-on-surface truncate">
+                        {form.title}
+                      </p>
+                      <p className="text-xs text-on-surface-variant">
+                        {count === 0
+                          ? "Sin completar"
+                          : `Completado ${count} ${count === 1 ? "vez" : "veces"}`}
+                      </p>
+                    </div>
+                    <ChevronRight
+                      size={16}
+                      className="text-on-surface-variant/40"
+                    />
+                  </Card>
+                </Link>
+              );
+            })}
           </div>
         </>
-      )}
-
-      {/* Completed */}
-      <h3 className="text-sm font-semibold text-on-surface mb-2">
-        Completados
-      </h3>
-      {submissions && submissions.length > 0 ? (
-        <div className="flex flex-col gap-2">
-          {submissions.map((submission) => {
-            const templateTitle =
-              (submission.form_templates as any)?.title || "Formulario";
-
-            return (
-              <Card
-                key={submission.id}
-                className="flex items-center gap-3 py-4 px-4"
-              >
-                <div className="w-9 h-9 rounded-xl bg-secondary/10 flex items-center justify-center shrink-0">
-                  <CheckCircle size={16} className="text-secondary" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-on-surface truncate">
-                    {templateTitle}
-                  </p>
-                  <p className="text-xs text-on-surface-variant">
-                    {new Date(submission.submitted_at).toLocaleDateString(
-                      "es-CR",
-                      {
-                        day: "numeric",
-                        month: "long",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      }
-                    )}
-                  </p>
-                </div>
-              </Card>
-            );
-          })}
-        </div>
       ) : (
-        <Card className="flex items-center gap-3 py-4 px-4">
-          <CheckCircle size={18} className="text-on-surface-variant/40" />
-          <p className="text-sm text-on-surface-variant">
-            No has completado ningún registro aún.
-          </p>
-        </Card>
-      )}
-
-      {pendingForms.length === 0 && (!submissions || submissions.length === 0) && (
-        <Card className="py-8 text-center mt-4">
+        <Card className="py-8 text-center mb-6">
           <ClipboardList
             size={36}
             className="text-on-surface-variant/40 mx-auto mb-3"
@@ -150,6 +108,48 @@ export default async function RegistrosPage() {
             Tu terapeuta aún no te ha asignado autorregistros.
           </p>
         </Card>
+      )}
+
+      {/* Recent submissions */}
+      {submissions && submissions.length > 0 && (
+        <>
+          <h3 className="text-sm font-semibold text-on-surface mb-2">
+            Respuestas recientes
+          </h3>
+          <div className="flex flex-col gap-2">
+            {submissions.slice(0, 10).map((submission) => {
+              const templateTitle =
+                (submission.form_templates as any)?.title || "Formulario";
+
+              return (
+                <Card
+                  key={submission.id}
+                  className="flex items-center gap-3 py-4 px-4"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-secondary/10 flex items-center justify-center shrink-0">
+                    <CheckCircle size={16} className="text-secondary" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-on-surface truncate">
+                      {templateTitle}
+                    </p>
+                    <p className="text-xs text-on-surface-variant">
+                      {new Date(submission.submitted_at).toLocaleDateString(
+                        "es-CR",
+                        {
+                          day: "numeric",
+                          month: "long",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        }
+                      )}
+                    </p>
+                  </div>
+                </Card>
+              );
+            })}
+          </div>
+        </>
       )}
     </div>
   );

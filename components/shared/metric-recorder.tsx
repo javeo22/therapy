@@ -5,12 +5,14 @@ import type { Metric } from "@/lib/types/database";
 interface MetricRecorderProps {
   metric: Metric;
   value?: number;
+  previousValue?: number;
   onChange: (value: number) => void;
 }
 
 export function MetricRecorder({
   metric,
   value,
+  previousValue,
   onChange,
 }: MetricRecorderProps) {
   const steps = Array.from(
@@ -24,11 +26,18 @@ export function MetricRecorder({
         <span className="text-sm font-medium text-on-surface">
           {metric.name}
         </span>
-        {value !== undefined && (
-          <span className="text-lg font-bold text-primary tabular-nums">
-            {value}
-          </span>
-        )}
+        <div className="flex items-baseline gap-2">
+          {previousValue !== undefined && (
+            <span className="text-xs text-on-surface-variant tabular-nums">
+              Anterior: {previousValue}
+            </span>
+          )}
+          {value !== undefined && (
+            <span className="text-lg font-bold text-primary tabular-nums">
+              {value}
+            </span>
+          )}
+        </div>
       </div>
       {metric.description && (
         <p className="text-xs text-on-surface-variant">{metric.description}</p>

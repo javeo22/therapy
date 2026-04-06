@@ -1,8 +1,9 @@
 import { Card } from "@/components/ui/card";
+import { DeleteSessionButton } from "@/components/therapist/delete-session-button";
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Pencil } from "lucide-react";
 
 export default async function SessionDetailPage({
   params,
@@ -48,9 +49,21 @@ export default async function SessionDetailPage({
         Sesiones
       </Link>
 
-      <h2 className="font-serif text-2xl font-bold text-on-surface mb-1 capitalize">
-        {sessionDate}
-      </h2>
+      <div className="flex items-start justify-between mb-1">
+        <h2 className="font-serif text-2xl font-bold text-on-surface capitalize">
+          {sessionDate}
+        </h2>
+        <div className="flex items-center gap-3">
+          <Link
+            href={`/terapeuta/pacientes/${id}/sesiones/${sessionId}/editar`}
+            className="flex items-center gap-1 text-xs text-tertiary hover:text-primary transition-colors"
+          >
+            <Pencil size={12} />
+            Editar
+          </Link>
+          <DeleteSessionButton sessionId={sessionId} patientRecordId={id} />
+        </div>
+      </div>
       <p className="text-sm text-on-surface-variant mb-4">
         {patient?.full_name}
       </p>

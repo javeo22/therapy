@@ -1,5 +1,6 @@
 import { PatientDashboardView } from "@/components/therapist/patient-dashboard-view";
 import { DeletePatientButton } from "@/components/therapist/delete-patient-button";
+import { EditPatientName } from "@/components/therapist/edit-patient-name";
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -83,9 +84,7 @@ export default async function PatientDetailPage({
       </Link>
 
       <div className="flex items-start justify-between mb-4">
-        <h2 className="font-serif text-2xl font-bold text-on-surface">
-          {patient.full_name}
-        </h2>
+        <EditPatientName patientId={patient.id} currentName={patient.full_name} />
         <DeletePatientButton
           patientId={patient.id}
           patientName={patient.full_name}

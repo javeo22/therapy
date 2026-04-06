@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createMetric } from "@/lib/actions/metrics";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/toast";
 
 interface MetricDefinitionFormProps {
   patientRecordId: string;
@@ -16,6 +17,7 @@ export function MetricDefinitionForm({
   onClose,
 }: MetricDefinitionFormProps) {
   const router = useRouter();
+  const { toast } = useToast();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -34,6 +36,7 @@ export function MetricDefinitionForm({
       return;
     }
 
+    toast("Métrica agregada");
     router.refresh();
     onClose?.();
   }

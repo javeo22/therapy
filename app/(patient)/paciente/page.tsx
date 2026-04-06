@@ -24,7 +24,7 @@ export default async function PatientDashboardPage() {
   // Get patient record
   const { data: record } = await supabase
     .from("patient_records")
-    .select("id")
+    .select("id, therapist_id")
     .eq("patient_id", user!.id)
     .eq("is_active", true)
     .single();
@@ -41,6 +41,13 @@ export default async function PatientDashboardPage() {
       </div>
     );
   }
+
+  // Fetch therapist name
+  const { data: therapistProfile } = await supabase
+    .from("profiles")
+    .select("full_name")
+    .eq("id", record.therapist_id)
+    .single();
 
   // Fetch metrics with values
   const { data: metrics } = await supabase
@@ -79,26 +86,22 @@ export default async function PatientDashboardPage() {
     .select("*", { count: "exact", head: true })
     .eq("patient_id", user!.id);
 
-  // Pending forms
-  const { data: templates } = await supabase
+  // Active forms (can be filled repeatedly)
+  const { data: activeForms } = await supabase
     .from("form_templates")
     .select("*")
     .eq("patient_record_id", record.id)
     .eq("is_active", true);
 
-  const { data: submissions } = await supabase
-    .from("form_submissions")
-    .select("form_template_id")
-    .eq("patient_id", user!.id);
-
-  const submittedIds = new Set(
-    (submissions || []).map((s) => s.form_template_id)
-  );
-  const pendingForms = (templates || []).filter((t) => !submittedIds.has(t.id));
-
   return (
     <div className="py-6">
       <PatientGreeting name={profile?.full_name || "Paciente"} />
+
+      {therapistProfile && (
+        <p className="text-xs text-on-surface-variant mb-4">
+          Terapeuta: {therapistProfile.full_name}
+        </p>
+      )}
 
       <EngagementIndicator
         totalSessions={sessionCount || 0}
@@ -124,10 +127,10 @@ export default async function PatientDashboardPage() {
 
       <div className="mt-6 mb-3">
         <h3 className="text-sm font-semibold text-on-surface">
-          Formularios pendientes
+          Autorregistros
         </h3>
       </div>
-      <PendingForms forms={pendingForms} />
+      <PendingForms forms={activeForms || []} />
     </div>
   );
 }
