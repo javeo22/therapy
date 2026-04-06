@@ -53,29 +53,29 @@ Actionable task checklist. Check off items as they're completed. See `PLAN.md` f
 ## Phase 2: Therapist Core
 
 ### Patient Management
-- [ ] Server Actions: `createPatient`, `updatePatient`, `listPatients`, `getPatient`
-- [ ] `PatientList` component with search/filter
-- [ ] `PatientCard` component (name, condition, last session, session count)
-- [ ] `PatientForm` component (create/edit)
-- [ ] Patient list page (`/terapeuta/pacientes`)
-- [ ] New patient page + invite generation
+- [x] Server Actions: `createPatient`, `updatePatient`, `listPatients`, `getPatient`
+- [x] `PatientList` component with search/filter
+- [x] `PatientCard` component (name, condition, last session, session count)
+- [x] `PatientForm` component (create/edit)
+- [x] Patient list page (`/terapeuta/pacientes`)
+- [x] New patient page + invite generation
 
 ### Session Documentation
-- [ ] Server Actions: `createSession`, `getSessionsByPatient`, `getSession`
-- [ ] `SessionForm` component (notes + metric recording)
-- [ ] New session page (`/terapeuta/pacientes/[id]/sesiones/nueva`)
-- [ ] Session history page (`/terapeuta/pacientes/[id]/sesiones`)
+- [x] Server Actions: `createSession`, `getSessionsByPatient`, `getSession`
+- [x] `SessionForm` component (notes + metric recording)
+- [x] New session page (`/terapeuta/pacientes/[id]/sesiones/nueva`)
+- [x] Session history page (`/terapeuta/pacientes/[id]/sesiones`)
 
 ### Metrics
-- [ ] Server Actions: `createMetric`, `updateMetric`, `recordMetricValues`, `getMetricHistory`
-- [ ] `MetricDefinitionForm` (name, description, min/max)
-- [ ] `MetricRecorder` (slider/tap inputs for 0–10 scales)
-- [ ] Integrate `MetricRecorder` into `SessionForm`
-- [ ] `MetricChart` shared component (Recharts LineChart, sparkline variant)
+- [x] Server Actions: `createMetric`, `updateMetric`, `recordMetricValues`, `getMetricHistory`
+- [x] `MetricDefinitionForm` (name, description, min/max)
+- [x] `MetricRecorder` (slider/tap inputs for 0–10 scales)
+- [x] Integrate `MetricRecorder` into `SessionForm`
+- [x] `MetricChart` shared component (Recharts LineChart, sparkline variant)
 
 ### Patient Detail
-- [ ] `PatientDashboardView` (charts + recent session + form status)
-- [ ] Patient detail page (`/terapeuta/pacientes/[id]`)
+- [x] `PatientDashboardView` (charts + recent session + form status)
+- [x] Patient detail page (`/terapeuta/pacientes/[id]`)
 
 ## Phase 3: Patient Core
 
