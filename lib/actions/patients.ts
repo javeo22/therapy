@@ -94,6 +94,21 @@ export async function updatePatient(id: string, formData: FormData) {
   return { success: true };
 }
 
+export async function deletePatient(id: string) {
+  const supabase = await createClient();
+
+  // Cascade delete handles sessions, metrics, metric_values, form_templates, form_submissions
+  const { error } = await supabase
+    .from("patient_records")
+    .delete()
+    .eq("id", id);
+
+  if (error) return { error: error.message };
+
+  revalidatePath("/terapeuta/pacientes");
+  return { success: true };
+}
+
 export async function regenerateInviteToken(id: string) {
   const supabase = await createClient();
 
