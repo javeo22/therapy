@@ -1,18 +1,119 @@
+import { PatientGreeting } from "@/components/patient/patient-greeting";
+import { MetricSummary } from "@/components/patient/metric-summary";
+import { PendingForms } from "@/components/patient/pending-forms";
+import { EngagementIndicator } from "@/components/patient/engagement-indicator";
 import { Card } from "@/components/ui/card";
+import { createClient } from "@/lib/supabase/server";
 
-export default function PatientDashboardPage() {
+export default async function PatientDashboardPage() {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  // Get profile for greeting
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("full_name")
+    .eq("id", user!.id)
+    .single();
+
+  // Get patient record
+  const { data: record } = await supabase
+    .from("patient_records")
+    .select("id")
+    .eq("patient_id", user!.id)
+    .eq("is_active", true)
+    .single();
+
+  if (!record) {
+    return (
+      <div className="py-6">
+        <PatientGreeting name={profile?.full_name || "Paciente"} />
+        <Card className="py-8 text-center">
+          <p className="text-sm text-on-surface-variant">
+            Aún no estás vinculado con un terapeuta.
+          </p>
+        </Card>
+      </div>
+    );
+  }
+
+  // Fetch metrics with values
+  const { data: metrics } = await supabase
+    .from("metrics")
+    .select("*")
+    .eq("patient_record_id", record.id)
+    .order("created_at", { ascending: true });
+
+  const metricsWithValues = await Promise.all(
+    (metrics || []).map(async (metric) => {
+      const { data: values } = await supabase
+        .from("metric_values")
+        .select("value, sessions(session_date)")
+        .eq("metric_id", metric.id)
+        .order("recorded_at", { ascending: true });
+
+      return {
+        ...metric,
+        values: (values || []).map((v: any) => ({
+          value: v.value,
+          sessions: v.sessions,
+        })),
+      };
+    })
+  );
+
+  // Session count
+  const { count: sessionCount } = await supabase
+    .from("sessions")
+    .select("*", { count: "exact", head: true })
+    .eq("patient_record_id", record.id);
+
+  // Completed forms count
+  const { count: formsCount } = await supabase
+    .from("form_submissions")
+    .select("*", { count: "exact", head: true })
+    .eq("patient_id", user!.id);
+
+  // Pending forms
+  const { data: templates } = await supabase
+    .from("form_templates")
+    .select("*")
+    .eq("patient_record_id", record.id)
+    .eq("is_active", true);
+
+  const { data: submissions } = await supabase
+    .from("form_submissions")
+    .select("form_template_id")
+    .eq("patient_id", user!.id);
+
+  const submittedIds = new Set(
+    (submissions || []).map((s) => s.form_template_id)
+  );
+  const pendingForms = (templates || []).filter((t) => !submittedIds.has(t.id));
+
   return (
     <div className="py-6">
-      <h2 className="font-serif text-2xl font-bold text-on-surface mb-1">
-        Hola
-      </h2>
-      <p className="text-on-surface-variant mb-6">Tu progreso terapéutico</p>
-      <Card>
-        <p className="text-on-surface-variant">
-          Tu panel de progreso aparecerá aquí cuando tu terapeuta registre tus
-          primeras sesiones.
-        </p>
-      </Card>
+      <PatientGreeting name={profile?.full_name || "Paciente"} />
+
+      <EngagementIndicator
+        totalSessions={sessionCount || 0}
+        totalFormsCompleted={formsCount || 0}
+      />
+
+      <div className="mt-6 mb-3">
+        <h3 className="text-sm font-semibold text-on-surface">Tu progreso</h3>
+      </div>
+      <MetricSummary metrics={metricsWithValues} />
+
+      <div className="mt-6 mb-3">
+        <h3 className="text-sm font-semibold text-on-surface">
+          Formularios pendientes
+        </h3>
+      </div>
+      <PendingForms forms={pendingForms} />
     </div>
   );
 }
