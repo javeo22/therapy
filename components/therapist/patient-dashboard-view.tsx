@@ -83,7 +83,7 @@ export function PatientDashboardView({
       )}
 
       {/* Quick actions */}
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
         <Link href={`/terapeuta/pacientes/${patient.id}/sesiones/nueva`}>
           <Card className="flex items-center gap-2 py-3 px-3 active:scale-[0.97] transition-transform">
             <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -105,6 +105,12 @@ export function PatientDashboardView({
           </Card>
         </Link>
       </div>
+
+      {/* Two-column grid on desktop */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+
+      {/* Left column: Metrics */}
+      <div className="flex flex-col gap-4">
 
       {/* Last session */}
       {lastSession && (
@@ -209,6 +215,11 @@ export function PatientDashboardView({
         )}
       </Card>
 
+      </div>{/* End left column */}
+
+      {/* Right column: Sessions & Forms */}
+      <div className="flex flex-col gap-4">
+
       {/* Autorregistros */}
       <Card variant="elevated">
         <div className="flex items-center justify-between mb-3">
@@ -259,6 +270,9 @@ export function PatientDashboardView({
           </div>
         )}
       </Card>
+
+      </div>{/* End right column */}
+      </div>{/* End two-column grid */}
     </div>
   );
 }

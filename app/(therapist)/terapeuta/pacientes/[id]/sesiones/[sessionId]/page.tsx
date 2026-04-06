@@ -55,8 +55,10 @@ export default async function SessionDetailPage({
         {patient?.full_name}
       </p>
 
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+
       {session.notes && (
-        <Card variant="elevated" className="mb-4">
+        <Card variant="elevated" className="lg:col-span-2">
           <h3 className="text-sm font-semibold text-on-surface mb-2">Notas</h3>
           <p className="text-sm text-on-surface-variant whitespace-pre-wrap leading-relaxed">
             {session.notes}
@@ -65,7 +67,7 @@ export default async function SessionDetailPage({
       )}
 
       {metricValues && metricValues.length > 0 && (
-        <Card variant="elevated">
+        <Card variant="elevated" className="lg:col-span-1">
           <h3 className="text-sm font-semibold text-on-surface mb-3">
             Métricas registradas
           </h3>
@@ -93,6 +95,8 @@ export default async function SessionDetailPage({
           </div>
         </Card>
       )}
+
+      </div>{/* End grid */}
     </div>
   );
 }

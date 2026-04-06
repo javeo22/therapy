@@ -137,9 +137,10 @@ export function FormBuilder({ patientRecordId }: FormBuilderProps) {
     router.refresh();
   }
 
+  // Mobile-only full preview mode
   if (showPreview) {
     return (
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 lg:hidden">
         <div className="flex items-center justify-between">
           <h3 className="font-serif text-lg font-bold text-on-surface">
             Vista previa
@@ -162,6 +163,8 @@ export function FormBuilder({ patientRecordId }: FormBuilderProps) {
   }
 
   return (
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    {/* Left: builder */}
     <div className="flex flex-col gap-4">
       {/* Title */}
       <Card variant="elevated">
@@ -362,7 +365,7 @@ export function FormBuilder({ patientRecordId }: FormBuilderProps) {
           <Button
             variant="secondary"
             onClick={() => setShowPreview(true)}
-            className="gap-1"
+            className="gap-1 lg:hidden"
           >
             <Eye size={14} /> Vista previa
           </Button>
@@ -376,6 +379,35 @@ export function FormBuilder({ patientRecordId }: FormBuilderProps) {
           Guardar formulario
         </Button>
       </div>
+    </div>{/* End left: builder */}
+
+    {/* Right: live preview — desktop only */}
+    <div className="hidden lg:block">
+      <div className="sticky top-6">
+        <h3 className="text-sm font-semibold text-on-surface mb-3 flex items-center gap-1.5">
+          <Eye size={14} className="text-on-surface-variant" />
+          Vista previa
+        </h3>
+        <Card variant="elevated">
+          <h4 className="font-semibold text-on-surface mb-4">
+            {title || "Sin título"}
+          </h4>
+          {fields.length === 0 ? (
+            <p className="text-xs text-on-surface-variant text-center py-8">
+              Agregá campos para ver la vista previa.
+            </p>
+          ) : (
+            <FormRenderer
+              fields={fields}
+              responses={{}}
+              onChange={() => {}}
+              disabled
+            />
+          )}
+        </Card>
+      </div>
+    </div>
+
     </div>
   );
 }

@@ -53,53 +53,58 @@ export function SessionForm({
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <Card variant="elevated">
-        <div className="flex flex-col gap-4">
-          <Input
-            name="session_date"
-            label="Fecha de la sesión"
-            type="date"
-            defaultValue={today}
-            required
-          />
-
-          <div className="flex flex-col gap-1.5">
-            <label
-              htmlFor="notes"
-              className="text-sm font-medium text-on-surface-variant"
-            >
-              Notas de la sesión
-            </label>
-            <textarea
-              id="notes"
-              name="notes"
-              rows={5}
-              placeholder="Observaciones, temas tratados, avances..."
-              className="w-full px-4 py-3 rounded-xl bg-surface-container-highest text-on-surface placeholder:text-on-surface-variant/50 border-b-2 border-transparent focus:bg-white focus:border-primary/40 focus:outline-none transition-all duration-300 ease-out resize-none"
+      {/* Desktop: notes + metrics side by side */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        {/* Notes — takes 2/3 on desktop */}
+        <Card variant="elevated" className="lg:col-span-2">
+          <div className="flex flex-col gap-4">
+            <Input
+              name="session_date"
+              label="Fecha de la sesión"
+              type="date"
+              defaultValue={today}
+              required
             />
-          </div>
-        </div>
-      </Card>
 
-      {metrics.length > 0 && (
-        <Card variant="elevated">
-          <h3 className="font-semibold text-on-surface mb-4">
-            Métricas de seguimiento
-          </h3>
-          <div className="flex flex-col gap-5">
-            {metrics.map((metric) => (
-              <MetricRecorder
-                key={metric.id}
-                metric={metric}
-                value={metricValues[metric.id]}
-                onChange={(value) =>
-                  setMetricValues((prev) => ({ ...prev, [metric.id]: value }))
-                }
+            <div className="flex flex-col gap-1.5">
+              <label
+                htmlFor="notes"
+                className="text-sm font-medium text-on-surface-variant"
+              >
+                Notas de la sesión
+              </label>
+              <textarea
+                id="notes"
+                name="notes"
+                rows={5}
+                placeholder="Observaciones, temas tratados, avances..."
+                className="w-full px-4 py-3 rounded-xl bg-surface-container-highest text-on-surface placeholder:text-on-surface-variant/50 border-b-2 border-transparent focus:bg-white focus:border-primary/40 focus:outline-none transition-all duration-300 ease-out resize-none lg:rows-[12] lg:min-h-[300px]"
               />
-            ))}
+            </div>
           </div>
         </Card>
-      )}
+
+        {/* Metrics — takes 1/3 on desktop */}
+        {metrics.length > 0 && (
+          <Card variant="elevated" className="lg:col-span-1">
+            <h3 className="font-semibold text-on-surface mb-4">
+              Métricas de seguimiento
+            </h3>
+            <div className="flex flex-col gap-5">
+              {metrics.map((metric) => (
+                <MetricRecorder
+                  key={metric.id}
+                  metric={metric}
+                  value={metricValues[metric.id]}
+                  onChange={(value) =>
+                    setMetricValues((prev) => ({ ...prev, [metric.id]: value }))
+                  }
+                />
+              ))}
+            </div>
+          </Card>
+        )}
+      </div>
 
       {error && (
         <p className="text-sm text-error font-medium px-1">{error}</p>
@@ -109,7 +114,7 @@ export function SessionForm({
         <Button type="button" variant="ghost" onClick={() => router.back()}>
           Cancelar
         </Button>
-        <Button type="submit" loading={loading} className="flex-1">
+        <Button type="submit" loading={loading} className="flex-1 lg:flex-none lg:px-12">
           Guardar sesión
         </Button>
       </div>
