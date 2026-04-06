@@ -79,14 +79,14 @@ Actionable task checklist. Check off items as they're completed. See `PLAN.md` f
 
 ## Phase 3: Patient Core
 
-- [ ] Server Actions: `getMyMetrics`, `getMySessionHistory`, `getMyPendingForms`
-- [ ] `PatientGreeting` ("Hola, María" with time-of-day context)
-- [ ] `MetricSummary` (cards with sparkline + current value)
-- [ ] `PendingForms` (list of forms awaiting completion)
-- [ ] `EngagementIndicator` (streak / completion rate placeholder)
-- [ ] Patient dashboard page (`/paciente`)
-- [ ] `SessionHistoryPatient` (dates + metrics, no therapist notes)
-- [ ] Patient sessions page (`/paciente/sesiones`)
+- [x] Server Actions: `getMyMetrics`, `getMySessionHistory`, `getMyPendingForms`
+- [x] `PatientGreeting` ("Hola, María" with time-of-day context)
+- [x] `MetricSummary` (cards with sparkline + current value)
+- [x] `PendingForms` (list of forms awaiting completion)
+- [x] `EngagementIndicator` (streak / completion rate placeholder)
+- [x] Patient dashboard page (`/paciente`)
+- [x] `SessionHistoryPatient` (dates + metrics, no therapist notes)
+- [x] Patient sessions page (`/paciente/sesiones`)
 
 ## Phase 4: Autorregistros
 
