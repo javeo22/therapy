@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MetricChart } from "@/components/shared/metric-chart";
 import { MetricDefinitionForm } from "./metric-definition-form";
-import type { PatientRecord, Session, Metric } from "@/lib/types/database";
+import type { PatientRecord, Session, Metric, FormTemplate } from "@/lib/types/database";
 import {
   Plus,
   Calendar,
@@ -26,16 +26,22 @@ interface MetricWithValues extends Metric {
   }[];
 }
 
+interface FormTemplateWithCount extends FormTemplate {
+  submissionCount: number;
+}
+
 interface PatientDashboardViewProps {
   patient: PatientRecord;
   sessions: Session[];
   metricsWithValues: MetricWithValues[];
+  formTemplates: FormTemplateWithCount[];
 }
 
 export function PatientDashboardView({
   patient,
   sessions,
   metricsWithValues,
+  formTemplates,
 }: PatientDashboardViewProps) {
   const [showMetricForm, setShowMetricForm] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -203,18 +209,55 @@ export function PatientDashboardView({
         )}
       </Card>
 
-      {/* Forms placeholder */}
+      {/* Autorregistros */}
       <Card variant="elevated">
-        <h3 className="text-sm font-semibold text-on-surface flex items-center gap-1.5 mb-2">
-          <ClipboardList size={14} className="text-on-surface-variant" />
-          Autorregistros
-        </h3>
-        <div className="flex flex-col items-center gap-2 py-6 text-center">
-          <ClipboardList size={24} className="text-on-surface-variant/30" />
-          <p className="text-xs text-on-surface-variant">
-            Los autorregistros estarán disponibles próximamente.
-          </p>
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-sm font-semibold text-on-surface flex items-center gap-1.5">
+            <ClipboardList size={14} className="text-on-surface-variant" />
+            Autorregistros
+          </h3>
+          <Link
+            href={`/terapeuta/pacientes/${patient.id}/formularios/nuevo`}
+            className="text-xs text-tertiary font-medium flex items-center gap-0.5"
+          >
+            <Plus size={12} /> Crear
+          </Link>
         </div>
+
+        {formTemplates.length === 0 ? (
+          <div className="flex flex-col items-center gap-2 py-6 text-center">
+            <ClipboardList size={24} className="text-on-surface-variant/30" />
+            <p className="text-xs text-on-surface-variant">
+              Creá un autorregistro para que tu paciente lo complete.
+            </p>
+          </div>
+        ) : (
+          <div className="flex flex-col gap-2">
+            {formTemplates.map((template) => (
+              <Link
+                key={template.id}
+                href={`/terapeuta/pacientes/${patient.id}/formularios/${template.id}`}
+              >
+                <div className="flex items-center gap-3 py-2 rounded-xl hover:bg-surface-container-high transition-colors px-2 -mx-2">
+                  <div className="w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center shrink-0">
+                    <ClipboardList size={14} className="text-secondary" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-on-surface truncate">
+                      {template.title}
+                    </p>
+                    <p className="text-xs text-on-surface-variant">
+                      {template.submissionCount}{" "}
+                      {template.submissionCount === 1 ? "respuesta" : "respuestas"}
+                      {!template.is_active && " · Inactivo"}
+                    </p>
+                  </div>
+                  <ChevronRight size={14} className="text-on-surface-variant/40" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </Card>
     </div>
   );

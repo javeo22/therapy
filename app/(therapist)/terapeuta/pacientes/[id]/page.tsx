@@ -53,6 +53,24 @@ export default async function PatientDetailPage({
     })
   );
 
+  // Fetch form templates with submission counts
+  const { data: templates } = await supabase
+    .from("form_templates")
+    .select("*")
+    .eq("patient_record_id", id)
+    .order("created_at", { ascending: false });
+
+  const formTemplates = await Promise.all(
+    (templates || []).map(async (template) => {
+      const { count } = await supabase
+        .from("form_submissions")
+        .select("*", { count: "exact", head: true })
+        .eq("form_template_id", template.id);
+
+      return { ...template, submissionCount: count || 0 };
+    })
+  );
+
   return (
     <div className="py-6">
       <Link
@@ -71,6 +89,7 @@ export default async function PatientDetailPage({
         patient={patient}
         sessions={sessions || []}
         metricsWithValues={metricsWithValues}
+        formTemplates={formTemplates}
       />
     </div>
   );
