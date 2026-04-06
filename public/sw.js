@@ -1,9 +1,12 @@
-const CACHE_NAME = "therapy-v1";
+const CACHE_NAME = "therapy-v2";
+const STATIC_ASSETS = [
+  "/offline.html",
+];
 
-// Install — cache offline page
+// Install — cache offline page + static assets
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.add("/offline.html"))
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS))
   );
   self.skipWaiting();
 });
@@ -20,11 +23,43 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Fetch — network first, offline fallback for navigations
+// Fetch — network first for navigations, cache first for static assets
 self.addEventListener("fetch", (event) => {
-  if (event.request.mode === "navigate") {
+  const { request } = event;
+
+  // Navigation requests — network first, offline fallback
+  if (request.mode === "navigate") {
     event.respondWith(
-      fetch(event.request).catch(() => caches.match("/offline.html"))
+      fetch(request)
+        .then((response) => {
+          // Cache successful navigation responses
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          return response;
+        })
+        .catch(() =>
+          caches.match(request).then((cached) => cached || caches.match("/offline.html"))
+        )
     );
+    return;
+  }
+
+  // Static assets (fonts, images, CSS, JS) — stale-while-revalidate
+  if (
+    request.destination === "style" ||
+    request.destination === "script" ||
+    request.destination === "font" ||
+    request.destination === "image"
+  ) {
+    event.respondWith(
+      caches.match(request).then((cached) => {
+        const fetchPromise = fetch(request).then((response) => {
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, response.clone()));
+          return response;
+        });
+        return cached || fetchPromise;
+      })
+    );
+    return;
   }
 });

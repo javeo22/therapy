@@ -36,7 +36,8 @@ export async function updateSession(request: NextRequest) {
   const isAuthRoute = pathname.startsWith("/login") ||
     pathname.startsWith("/registro") ||
     pathname.startsWith("/invitacion") ||
-    pathname.startsWith("/auth/callback");
+    pathname.startsWith("/auth/callback") ||
+    pathname.startsWith("/consentimiento");
 
   const isRootPage = pathname === "/";
 
@@ -60,6 +61,21 @@ export async function updateSession(request: NextRequest) {
       ? "/terapeuta/pacientes"
       : "/paciente";
     return NextResponse.redirect(url);
+  }
+
+  // Authenticated user without consent → redirect to consent page
+  if (user && !isAuthRoute && !isRootPage) {
+    const { data: consentProfile } = await supabase
+      .from("profiles")
+      .select("consent_given_at")
+      .eq("id", user.id)
+      .single();
+
+    if (consentProfile && !consentProfile.consent_given_at) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/consentimiento";
+      return NextResponse.redirect(url);
+    }
   }
 
   // Authenticated user on wrong role's routes → redirect

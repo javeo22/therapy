@@ -15,18 +15,21 @@ export type Database = {
           role: "therapist" | "patient";
           full_name: string;
           created_at: string;
+          consent_given_at: string | null;
         };
         Insert: {
           id: string;
           role: "therapist" | "patient";
           full_name: string;
           created_at?: string;
+          consent_given_at?: string | null;
         };
         Update: {
           id?: string;
           role?: "therapist" | "patient";
           full_name?: string;
           created_at?: string;
+          consent_given_at?: string | null;
         };
       };
       patient_records: {

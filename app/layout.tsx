@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Noto_Serif, Plus_Jakarta_Sans } from "next/font/google";
+import { ToastProvider } from "@/components/ui/toast";
+import { OfflineBanner } from "@/components/ui/offline-banner";
 import "./globals.css";
 
 const notoSerif = Noto_Serif({
@@ -44,7 +46,10 @@ export default function RootLayout({
       className={`${notoSerif.variable} ${plusJakartaSans.variable} h-full`}
     >
       <body className="min-h-full flex flex-col antialiased">
+        <OfflineBanner />
+        <ToastProvider>
         {children}
+        </ToastProvider>
         <script
           dangerouslySetInnerHTML={{
             __html: `
