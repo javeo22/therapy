@@ -1,0 +1,98 @@
+import { Card } from "@/components/ui/card";
+import { createClient } from "@/lib/supabase/server";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+
+export default async function SessionDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string; sessionId: string }>;
+}) {
+  const { id, sessionId } = await params;
+  const supabase = await createClient();
+
+  const { data: session } = await supabase
+    .from("sessions")
+    .select("*")
+    .eq("id", sessionId)
+    .single();
+
+  if (!session) notFound();
+
+  const { data: patient } = await supabase
+    .from("patient_records")
+    .select("full_name")
+    .eq("id", id)
+    .single();
+
+  const { data: metricValues } = await supabase
+    .from("metric_values")
+    .select("*, metrics(name, min_value, max_value)")
+    .eq("session_id", sessionId);
+
+  const sessionDate = new Date(session.session_date + "T12:00:00").toLocaleDateString("es-CR", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  return (
+    <div className="py-6">
+      <Link
+        href={`/terapeuta/pacientes/${id}/sesiones`}
+        className="inline-flex items-center gap-1 text-sm text-tertiary mb-4"
+      >
+        <ArrowLeft size={14} />
+        Sesiones
+      </Link>
+
+      <h2 className="font-serif text-2xl font-bold text-on-surface mb-1 capitalize">
+        {sessionDate}
+      </h2>
+      <p className="text-sm text-on-surface-variant mb-4">
+        {patient?.full_name}
+      </p>
+
+      {session.notes && (
+        <Card variant="elevated" className="mb-4">
+          <h3 className="text-sm font-semibold text-on-surface mb-2">Notas</h3>
+          <p className="text-sm text-on-surface-variant whitespace-pre-wrap leading-relaxed">
+            {session.notes}
+          </p>
+        </Card>
+      )}
+
+      {metricValues && metricValues.length > 0 && (
+        <Card variant="elevated">
+          <h3 className="text-sm font-semibold text-on-surface mb-3">
+            Métricas registradas
+          </h3>
+          <div className="flex flex-col gap-3">
+            {metricValues.map((mv: any) => (
+              <div key={mv.id} className="flex items-center justify-between">
+                <span className="text-sm text-on-surface-variant">
+                  {mv.metrics?.name}
+                </span>
+                <div className="flex items-center gap-2">
+                  <div className="w-24 h-2 rounded-full bg-surface-container-highest overflow-hidden">
+                    <div
+                      className="h-full rounded-full bg-primary"
+                      style={{
+                        width: `${((mv.value - (mv.metrics?.min_value || 0)) / ((mv.metrics?.max_value || 10) - (mv.metrics?.min_value || 0))) * 100}%`,
+                      }}
+                    />
+                  </div>
+                  <span className="text-sm font-bold text-primary tabular-nums w-6 text-right">
+                    {mv.value}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Card>
+      )}
+    </div>
+  );
+}
