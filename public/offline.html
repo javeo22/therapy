@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sin conexión — Therapy</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background: #fffcf7;
+      color: #373831;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+      text-align: center;
+    }
+    .container { max-width: 360px; }
+    h1 {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      color: #9b4f36;
+    }
+    p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #5c5d52;
+      margin-bottom: 1.5rem;
+    }
+    button {
+      background: linear-gradient(135deg, #9b4f36, #7a3e2b);
+      color: white;
+      border: none;
+      padding: 0.875rem 2rem;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      cursor: pointer;
+      font-family: inherit;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sin conexión</h1>
+    <p>No pudimos conectarnos. Revisá tu conexión a internet e intentá de nuevo.</p>
+    <button onclick="window.location.reload()">Reintentar</button>
+  </div>
+</body>
+</html>

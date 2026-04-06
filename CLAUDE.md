@@ -1,8 +1,8 @@
-# CLAUDE.md — Refugio Editorial
+# CLAUDE.md — Therapy
 
 ## Project Overview
 
-**Refugio Editorial** — a therapy process companion app for Costa Rican psychologists and their patients. Built as a PWA-first web app with a clear path toward native mobile. Therapists document session progress, assign self-monitoring forms (autorregistros), and build patient dashboards. Patients view their own progress, complete assigned forms, and track their therapeutic journey.
+**Therapy** — a therapy process companion app for Costa Rican psychologists and their patients. Built as a PWA-first web app with a clear path toward native mobile. Therapists document session progress, assign self-monitoring forms (autorregistros), and build patient dashboards. Patients view their own progress, complete assigned forms, and track their therapeutic journey.
 
 Solo developer project, built with Claude Code. Move fast, ship incrementally, keep the architecture clean.
 
@@ -264,11 +264,23 @@ Regulated by Colegio de Psicólogos de Costa Rica and Ley 8968 (data protection)
 
 ---
 
+## Workflow Rules
+
+### Git Commits
+- **Commit after every completed phase.** Each phase (0, 1, 2, ...) gets its own commit before moving to the next.
+
+### Documentation
+- **Notion**: Save app documentation and track project progress (phase completion, decisions, blockers).
+- **Obsidian**: Mirror app documentation for local/offline reference.
+- After completing each phase, sync relevant docs and progress updates to both Notion and Obsidian.
+
+---
+
 ## Decisions Log
 
 | Decision | Choice | Rationale |
 |----------|--------|-----------|
-| App name | Refugio Editorial | From Stitch design system output |
+| App name | Therapy (placeholder) | TBD — final name not yet decided |
 | Patient onboarding | Therapist-invites | Therapist controls who has access; no unsolicited registrations |
 | Charting library | Recharts | Lightweight, React-native JSX API, good mobile support |
 | Form data model | JSONB fields + responses | Simple, flexible, no migration needed for new field types |

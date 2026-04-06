@@ -1,4 +1,4 @@
-# TODO.md — Refugio Editorial
+# TODO.md — Therapy
 
 Actionable task checklist. Check off items as they're completed. See `PLAN.md` for full context and acceptance criteria per phase.
 

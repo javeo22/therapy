@@ -1,4 +1,4 @@
-# PLAN.md — Refugio Editorial Development Roadmap
+# PLAN.md — Therapy Development Roadmap
 
 ## Summary
 
@@ -11,7 +11,7 @@ Phased development plan for a PWA therapy companion app for Costa Rican psycholo
 ## Technical Decisions
 
 ### App Name
-**Refugio Editorial** — from the Stitch design system output.
+**Therapy** — placeholder name. Final name TBD.
 
 ### Charting: Recharts
 Lightweight, React-native, JSX API. Best fit for sparkline trend charts on patient dashboards. `<LineChart>` with `<ResponsiveContainer>` handles mobile viewports well.
@@ -38,8 +38,11 @@ Use Next.js Server Actions (`"use server"`) for all mutations. They handle CSRF,
 ### Patient Onboarding: Therapist-Invites Model
 Therapist creates a patient record → generates an invite link → patient registers via that link → auto-linked to therapist. No self-registration for patients.
 
-### Design System: Stitch Output Available
-Full design system from Stitch: "The Editorial Sanctuary" aesthetic. Terracotta primary (#9b4f36), sage secondary (#596a40), warm neutrals. Noto Serif for headings, Plus Jakarta Sans for body. Implement design tokens from Phase 0.
+### Design System: Antigravity Editorial Sanctuary
+Merged the original "Editorial Sanctuary" aesthetic from Stitch with the "Antigravity UI & Motion Design" principles.
+- **Aesthetic:** Terracotta primary (#9b4f36), sage secondary (#596a40), warm neutrals. Noto Serif for headings, Plus Jakarta Sans for body.
+- **Antigravity Upgrades:** Glassmorphism, 3D CSS spatial depth, staggered entrances, diffused shadows, and parallax scrolling.
+- **Guidelines:** See `DESIGN_GUIDELINES.md` for full constraints on shadows, transitions, and z-axis layering. Implement design tokens and Framer Motion/GSAP from Phase 0.
 
 ### Testing Strategy (MVP)
 - Strict TypeScript (`strict: true`) + Zod validation as primary safety net
